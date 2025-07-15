@@ -10,6 +10,7 @@
 import { ai } from '@/ai/genkit';
 import { getPublicRepositories, GithubRepository } from '@/services/github';
 import { z } from 'genkit';
+import { generateProjectImage } from './generate-project-image-flow';
 
 const GetGithubProjectsInputSchema = z.object({
   username: z.string().describe('The GitHub username.'),
@@ -20,7 +21,7 @@ const ProjectSchema = z.object({
   title: z.string().describe('The name of the repository.'),
   description: z.string().describe("A concise, one-sentence description of the project, suitable for a portfolio."),
   tools: z.array(z.string()).describe('An array of languages or main technologies used in the project (e.g., Python, Jupyter, Pandas).'),
-  image: z.string().describe('A placeholder image URL for the project.'),
+  image: z.string().describe('A generated image URL (data URI) for the project.'),
   aiHint: z.string().describe('A two-word hint for generating a relevant project image (e.g., "data visualization", "server network").'),
   category: z.enum(['dataScientist', 'dataEngineer', 'dataAnalyst']).describe("The category of the project based on its content."),
   url: z.string().describe('The URL of the GitHub repository.'),
@@ -47,18 +48,16 @@ For each repository, you must:
 3.  **Identify the key technologies and tools** used. This should be an array of strings, including the primary programming language and any mentioned frameworks or libraries (e.g., "Python", "Jupyter", "Pandas").
 4.  **Create a two-word AI hint** for generating a relevant image for the project (e.g., "sentiment analysis", "market prediction").
 
-Analyze the following repositories and return the data in the specified JSON format.
+Analyze the following repositories and return the data in the specified JSON format. You must only return the JSON object.
 
-    Repositories:
-    {{#each repo}}
-    - Name: {{this.name}}
-      Description: {{this.description}}
-      URL: {{this.html_url}}
-      Language: {{this.language}}
-    {{/each}}
-
-    Your response must only contain the JSON object.
-    `,
+Repositories:
+{{#each repo}}
+- Name: {{this.name}}
+  Description: {{this.description}}
+  URL: {{this.html_url}}
+  Language: {{this.language}}
+{{/each}}
+`,
 });
 
 const getGithubProjectsFlow = ai.defineFlow(
@@ -71,7 +70,6 @@ const getGithubProjectsFlow = ai.defineFlow(
   async (input) => {
     const repos = await getPublicRepositories(input);
 
-    // Filter out forked repos and select the most recent 6.
     const filteredRepos = repos.filter(repo => !repo.fork).slice(0, 6);
 
     if (filteredRepos.length === 0) {
@@ -89,10 +87,16 @@ const getGithubProjectsFlow = ai.defineFlow(
         throw new Error('Failed to categorize projects.');
     }
 
-    // Post-process to add placeholder image and ensure tools are populated
-    const finalProjects = output.projects.map(p => ({
+    // Generate images in parallel
+    const imagePromises = output.projects.map(p => 
+        generateProjectImage({ title: p.title, aiHint: p.aiHint })
+    );
+    const generatedImages = await Promise.all(imagePromises);
+
+    // Combine projects with generated images
+    const finalProjects = output.projects.map((p, index) => ({
         ...p,
-        image: `https://placehold.co/600x400.png`,
+        image: generatedImages[index],
         tools: p.tools.length > 0 ? p.tools : ['Code'],
     }));
 
