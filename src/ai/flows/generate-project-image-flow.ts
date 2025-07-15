@@ -18,18 +18,22 @@ export type GenerateProjectImageInput = z.infer<typeof GenerateProjectImageInput
 
 
 export async function generateProjectImage(input: GenerateProjectImageInput): Promise<string> {
-    const { media } = await ai.generate({
-        model: 'googleai/gemini-2.0-flash-preview-image-generation',
-        prompt: `Generate a professional and visually appealing image for a software project titled "${input.title}". The project is about ${input.aiHint}. The image should be abstract, using a modern tech aesthetic. Avoid text and human figures.`,
-        config: {
-          responseModalities: ['TEXT', 'IMAGE'],
-        },
-    });
+    try {
+        const { media } = await ai.generate({
+            model: 'googleai/gemini-2.0-flash-preview-image-generation',
+            prompt: `Generate a professional and visually appealing image for a software project titled "${input.title}". The project is about ${input.aiHint}. The image should be abstract, using a modern tech aesthetic. Avoid text and human figures.`,
+            config: {
+              responseModalities: ['TEXT', 'IMAGE'],
+            },
+        });
 
-    if (!media?.url) {
-        console.error('Image generation failed, returning placeholder.');
+        if (!media?.url) {
+            console.error('Image generation failed, returning placeholder.');
+            return 'https://placehold.co/600x400.png';
+        }
+        return media.url;
+    } catch(e) {
+        console.error('Error generating project image, returning placeholder.', e);
         return 'https://placehold.co/600x400.png';
     }
-
-    return media.url;
 }
