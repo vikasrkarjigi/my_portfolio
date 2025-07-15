@@ -70,7 +70,7 @@ const getGithubProjectsFlow = ai.defineFlow(
   async (input) => {
     const repos = await getPublicRepositories(input);
 
-    const filteredRepos = repos.filter(repo => !repo.fork).slice(0, 6);
+    const filteredRepos = repos.filter(repo => !repo.fork && repo.name !== input.username).slice(0, 6);
 
     if (filteredRepos.length === 0) {
       return { projects: [] };
