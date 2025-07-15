@@ -20,10 +20,10 @@ const ProjectSchema = z.object({
   title: z.string().describe('The name of the repository.'),
   description: z.string().describe("A concise, one-sentence description of the project, suitable for a portfolio."),
   tools: z.array(z.string()).describe('An array of languages or main technologies used in the project.'),
-  image: z.string().url().describe('A placeholder image URL for the project.'),
+  image: z.string().describe('A placeholder image URL for the project.'),
   aiHint: z.string().describe('A two-word hint for generating a relevant project image (e.g., "data visualization", "server network").'),
   category: z.enum(['dataScientist', 'dataEngineer', 'dataAnalyst']).describe("The category of the project based on its content."),
-  url: z.string().url().describe('The URL of the GitHub repository.'),
+  url: z.string().describe('The URL of the GitHub repository.'),
 });
 
 const GetGithubProjectsOutputSchema = z.object({
