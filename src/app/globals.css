@@ -58,8 +58,7 @@
     @apply bg-gradient-to-br from-white to-blue-100;
   }
   .dark body {
-    @apply bg-background;
-    background-image: radial-gradient(ellipse 50% 80% at 50% -20%, hsl(222 47% 25%), transparent);
+    background-image: linear-gradient(to bottom right, hsl(210 89% 64%), hsl(222 84% 49%));
   }
   html {
     scroll-behavior: smooth;
