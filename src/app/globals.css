@@ -59,6 +59,7 @@
   }
   .dark body {
     @apply bg-background;
+    @apply bg-gradient-to-br from-background to-indigo-950/30;
   }
   html {
     scroll-behavior: smooth;
