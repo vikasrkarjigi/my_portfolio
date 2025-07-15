@@ -12,7 +12,7 @@ import { z } from 'genkit';
 
 const GenerateProjectImageInputSchema = z.object({
   title: z.string().describe('The title of the project.'),
-  aiHint: z.string().describe('A two-word hint for the image generation model.'),
+  description: z.string().describe('A detailed description of the project.'),
 });
 export type GenerateProjectImageInput = z.infer<typeof GenerateProjectImageInputSchema>;
 
@@ -21,7 +21,11 @@ export async function generateProjectImage(input: GenerateProjectImageInput): Pr
     try {
         const { media } = await ai.generate({
             model: 'googleai/gemini-2.0-flash-preview-image-generation',
-            prompt: `Generate a professional and visually appealing image for a software project titled "${input.title}". The project is about ${input.aiHint}. The image should be abstract, using a modern tech aesthetic. Avoid text and human figures.`,
+            prompt: `Generate a professional and visually appealing image that represents a software project.
+Project Title: "${input.title}"
+Project Description: "${input.description}"
+
+Create a compelling, abstract, modern tech aesthetic image based on the title and description. Avoid using any text or human figures in the image. Focus on conceptual representation.`,
             config: {
               responseModalities: ['TEXT', 'IMAGE'],
             },

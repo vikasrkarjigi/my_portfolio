@@ -22,7 +22,6 @@ const ProjectSchema = z.object({
   description: z.string().describe("A concise, one-sentence description of the project, suitable for a portfolio."),
   tools: z.array(z.string()).describe('An array of languages or main technologies used in the project (e.g., Python, Jupyter, Pandas).'),
   image: z.string().describe('A generated image URL (data URI) for the project.'),
-  aiHint: z.string().describe('A two-word hint for generating a relevant project image (e.g., "data visualization", "server network").'),
   category: z.enum(['dataScientist', 'dataEngineer', 'dataAnalyst']).describe("The category of the project based on its content."),
   url: z.string().describe('The URL of the GitHub repository.'),
 });
@@ -49,7 +48,6 @@ For each repository, you must:
     - **dataAnalyst**: Assign this category if the project focuses on data cleaning, exploratory data analysis (EDA), and visualization (e.g., using libraries like Matplotlib, Seaborn, Plotly, or tools like Tableau).
 2.  **Write a concise, one-sentence description** suitable for a project card.
 3.  **Identify the key technologies and tools** used. This should be an array of strings, including the primary programming language and any mentioned frameworks or libraries (e.g., "Python", "Jupyter", "Pandas").
-4.  **Create a two-word AI hint** for generating a relevant image for the project (e.g., "sentiment analysis", "market prediction").
 
 Analyze the following repositories and return the data in the specified JSON format. You must only return the JSON object.
 
@@ -92,7 +90,7 @@ const getGithubProjectsFlow = ai.defineFlow(
 
     // Generate images in parallel
     const imagePromises = output.projects.map(p => 
-        generateProjectImage({ title: p.title, aiHint: p.aiHint })
+        generateProjectImage({ title: p.title, description: p.description })
     );
     const generatedImages = await Promise.all(imagePromises);
 

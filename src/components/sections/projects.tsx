@@ -14,7 +14,6 @@ type Project = {
   description: string;
   tools: string[];
   image: string;
-  aiHint: string;
   category: 'dataScientist' | 'dataEngineer' | 'dataAnalyst';
   url: string;
 };
@@ -112,7 +111,7 @@ function ProjectCard(project: Project) {
               width={600}
               height={400}
               className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
-              data-ai-hint={project.aiHint}
+              data-ai-hint={project.description}
             />
           </div>
         </CardHeader>
