@@ -8,7 +8,7 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { getPublicRepositories, GithubRepository } from '@/services/github';
+import { getPublicRepositories } from '@/services/github';
 import { z } from 'genkit';
 import { generateProjectImage } from './generate-project-image-flow';
 
@@ -43,7 +43,10 @@ const categorizeProjectPrompt = ai.definePrompt({
     prompt: `You are an expert developer and portfolio curator. Your task is to analyze a list of GitHub repositories and format them for a portfolio website.
 
 For each repository, you must:
-1.  **Categorize** it into one of three roles: 'dataScientist', 'dataEngineer', or 'dataAnalyst' based on its name, description, and primary language.
+1.  **Analyze and Categorize**: Look at the repository's name, description, languages, and tools to categorize it into ONE of the three roles: 'dataScientist', 'dataEngineer', or 'dataAnalyst'.
+    - **dataScientist**: Assign this category if the project involves machine learning (e.g., scikit-learn, TensorFlow, PyTorch), statistical modeling, or advanced data analysis and prediction.
+    - **dataEngineer**: Assign this category if the project involves data pipelines, ETL processes, database management, or infrastructure for data storage and processing (e.g., Airflow, Spark, Kafka).
+    - **dataAnalyst**: Assign this category if the project focuses on data cleaning, exploratory data analysis (EDA), and visualization (e.g., using libraries like Matplotlib, Seaborn, Plotly, or tools like Tableau).
 2.  **Write a concise, one-sentence description** suitable for a project card.
 3.  **Identify the key technologies and tools** used. This should be an array of strings, including the primary programming language and any mentioned frameworks or libraries (e.g., "Python", "Jupyter", "Pandas").
 4.  **Create a two-word AI hint** for generating a relevant image for the project (e.g., "sentiment analysis", "market prediction").
