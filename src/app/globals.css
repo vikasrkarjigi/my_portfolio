@@ -60,7 +60,7 @@
   }
   .dark body {
     background-color: hsl(240, 10%, 7%);
-    background-image: radial-gradient(ellipse 80% 50% at 50% 120%, hsl(250, 30%, 20%, 0.4), transparent);
+    background-image: radial-gradient(ellipse 80% 50% at 50% 120%, hsl(291, 100%, 65%, 0.15), transparent), radial-gradient(ellipse 80% 80% at 0% 100%, hsl(240, 100%, 65%, 0.15), transparent);
   }
   html {
     scroll-behavior: smooth;
