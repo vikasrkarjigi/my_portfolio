@@ -19,7 +19,7 @@ export type GetGithubProjectsInput = z.infer<typeof GetGithubProjectsInputSchema
 const ProjectSchema = z.object({
   title: z.string().describe('The name of the repository.'),
   description: z.string().describe("A concise, one-sentence description of the project, suitable for a portfolio."),
-  tools: z.array(z.string()).describe('An array of languages or main technologies used in the project.'),
+  tools: z.array(z.string()).describe('An array of languages or main technologies used in the project (e.g., Python, Jupyter, Pandas).'),
   image: z.string().describe('A placeholder image URL for the project.'),
   aiHint: z.string().describe('A two-word hint for generating a relevant project image (e.g., "data visualization", "server network").'),
   category: z.enum(['dataScientist', 'dataEngineer', 'dataAnalyst']).describe("The category of the project based on its content."),
@@ -39,9 +39,15 @@ const categorizeProjectPrompt = ai.definePrompt({
     name: 'categorizeProjectPrompt',
     input: { schema: z.object({ repo: z.any() }) },
     output: { schema: GetGithubProjectsOutputSchema },
-    prompt: `You are an expert at analyzing GitHub repositories. Based on the repository information (name, description, language), categorize the projects into one of three categories: 'dataScientist', 'dataEngineer', or 'dataAnalyst'. Also generate a concise, one-sentence portfolio-ready description, a two-word hint for an image, and list the primary language as a tool.
+    prompt: `You are an expert developer and portfolio curator. Your task is to analyze a list of GitHub repositories and format them for a portfolio website.
 
-    Analyze the following repositories and return them in the specified JSON format.
+For each repository, you must:
+1.  **Categorize** it into one of three roles: 'dataScientist', 'dataEngineer', or 'dataAnalyst' based on its name, description, and primary language.
+2.  **Write a concise, one-sentence description** suitable for a project card.
+3.  **Identify the key technologies and tools** used. This should be an array of strings, including the primary programming language and any mentioned frameworks or libraries (e.g., "Python", "Jupyter", "Pandas").
+4.  **Create a two-word AI hint** for generating a relevant image for the project (e.g., "sentiment analysis", "market prediction").
+
+Analyze the following repositories and return the data in the specified JSON format.
 
     Repositories:
     {{#each repo}}
