@@ -59,7 +59,8 @@
   }
   .dark body {
     @apply bg-background;
-    @apply bg-gradient-to-br from-background to-indigo-950/30;
+    background-color: #0c0a18;
+    background-image: radial-gradient(ellipse 80% 80% at 50% -20%,rgba(120,119,198,0.3), hsla(0,0%,100%,0));
   }
   html {
     scroll-behavior: smooth;
