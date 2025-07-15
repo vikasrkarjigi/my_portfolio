@@ -77,15 +77,24 @@ const getGithubProjectsFlow = ai.defineFlow(
       return { projects: [] };
     }
     
-    const { output } = await categorizeProjectPrompt({ repo: filteredRepos.map(repo => ({
-        name: repo.name,
-        description: repo.description,
-        html_url: repo.html_url,
-        language: repo.language,
-    }))});
+    let output;
+    try {
+        const { output: promptOutput } = await categorizeProjectPrompt({ repo: filteredRepos.map(repo => ({
+            name: repo.name,
+            description: repo.description,
+            html_url: repo.html_url,
+            language: repo.language,
+        }))});
+        output = promptOutput;
+    } catch (e) {
+        console.error("AI categorization failed, returning empty project list.", e);
+        return { projects: [] };
+    }
+
 
     if (!output) {
-        throw new Error('Failed to categorize projects.');
+      // This case handles if the AI returns a null/undefined but valid response
+      return { projects: [] };
     }
 
     // Generate images in parallel
