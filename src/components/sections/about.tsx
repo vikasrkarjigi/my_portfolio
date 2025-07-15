@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Trophy, Drum, GitCommitVertical } from "lucide-react"
+import { ArrowRight, Trophy } from "lucide-react"
 
 const GuitarIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -24,6 +24,9 @@ const ChessKnightIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export function About() {
   return (
     <section id="about" className="container relative mx-auto py-24 sm:py-32 overflow-hidden">
+       <div aria-hidden="true" className="absolute inset-0 -z-10 -top-40 [mask-image:radial-gradient(100%_100%_at_top,white,transparent)]">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent via-transparent"></div>
+        </div>
         <div className="absolute inset-0 -z-10 text-primary/5 [filter:blur(18px)]">
             <GuitarIcon className="absolute w-64 h-64 top-10 left-[-5rem] opacity-50 rotate-[30deg]"/>
             <ChessKnightIcon className="absolute w-72 h-72 bottom-[-5rem] right-[-6rem] opacity-50 rotate-[-20deg]"/>
@@ -54,5 +57,3 @@ export function About() {
     </section>
   )
 }
-
-    
