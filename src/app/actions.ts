@@ -1,6 +1,7 @@
 'use server'
 
 import { extractTechStacks } from '@/ai/flows/extract-tech-stacks-from-resume'
+import { getGithubProjects } from '@/ai/flows/get-github-projects-flow';
 
 export async function getTechStacksFromResume(resumeText: string) {
   try {
@@ -10,5 +11,27 @@ export async function getTechStacksFromResume(resumeText: string) {
     console.error('Error extracting tech stacks:', error);
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
     return { success: false, error: `Failed to extract tech stacks from resume. ${errorMessage}` };
+  }
+}
+
+export async function getProjectsFromGithub(username: string) {
+  try {
+    const result = await getGithubProjects({ username });
+    
+    // Group projects by category
+    const groupedProjects = result.projects.reduce((acc, project) => {
+      const category = project.category as 'dataScientist' | 'dataEngineer' | 'dataAnalyst';
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(project);
+      return acc;
+    }, {} as Record<'dataScientist' | 'dataEngineer' | 'dataAnalyst', typeof result.projects>);
+
+    return { success: true, data: groupedProjects };
+  } catch (error) {
+    console.error('Error getting GitHub projects:', error);
+    const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
+    return { success: false, error: `Failed to get projects from GitHub. ${errorMessage}` };
   }
 }
