@@ -27,9 +27,9 @@
   }
 
   .dark {
-    --background: 222 47% 18%;
+    --background: 222 47% 11%;
     --foreground: 210 40% 98%;
-    --card: 222 47% 18%;
+    --card: 222 47% 11%;
     --card-foreground: 210 40% 98%;
     --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
@@ -55,10 +55,11 @@
   }
   body {
     @apply text-foreground;
-    @apply bg-gradient-to-br from-white to-blue-100;
+    background-image: linear-gradient(to bottom right, hsl(0 0% 100%), hsl(210 100% 90%));
   }
   .dark body {
-    background-image: linear-gradient(to bottom right, hsl(210 89% 64%), hsl(222 84% 49%));
+    background-color: hsl(240, 10%, 7%);
+    background-image: radial-gradient(ellipse 80% 50% at 50% 120%, hsl(250, 30%, 20%, 0.4), transparent);
   }
   html {
     scroll-behavior: smooth;
