@@ -66,8 +66,8 @@ const getGithubProjectsFlow = ai.defineFlow(
   async (input) => {
     const repos = await getPublicRepositories(input);
 
-    // Filter out forked repos and repos without topics, as they are less likely to be showcase projects.
-    const filteredRepos = repos.filter(repo => !repo.fork && repo.topics.length > 0).slice(0, 6); // Limit to 6 projects for performance
+    // Filter out forked repos and select the most recent 6.
+    const filteredRepos = repos.filter(repo => !repo.fork).slice(0, 6);
 
     if (filteredRepos.length === 0) {
       return { projects: [] };
