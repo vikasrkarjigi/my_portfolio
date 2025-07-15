@@ -54,13 +54,7 @@
     @apply border-border;
   }
   body {
-    @apply text-foreground;
-    background-color: hsl(0 0% 100%);
-    background-image: radial-gradient(at 0% 0%, hsl(280 100% 97% / 0.5), transparent 50%), radial-gradient(at 100% 100%, hsl(240 100% 97% / 0.5), transparent 50%);
-  }
-  .dark body {
-    background-color: hsl(240, 10%, 7%);
-    background-image: radial-gradient(ellipse 80% 50% at 50% 120%, hsl(291, 100%, 65%, 0.15), transparent), radial-gradient(ellipse 80% 80% at 0% 100%, hsl(240, 100%, 65%, 0.15), transparent);
+    @apply text-foreground bg-background;
   }
   html {
     scroll-behavior: smooth;

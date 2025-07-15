@@ -19,7 +19,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased">
+      <body className="font-body antialiased relative">
+        <div aria-hidden="true" className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent via-transparent" />
+        </div>
         {children}
         <Toaster />
       </body>
