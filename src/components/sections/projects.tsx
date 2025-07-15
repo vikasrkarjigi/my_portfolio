@@ -33,7 +33,6 @@ export function Projects() {
   useEffect(() => {
     const fetchProjects = async () => {
       setIsLoading(true);
-      // TODO: Replace with your GitHub username
       const result = await getProjectsFromGithub("vikasrkarjigi");
       if (result.success && result.data) {
         setProjects(result.data);
