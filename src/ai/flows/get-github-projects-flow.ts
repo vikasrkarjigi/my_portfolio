@@ -39,7 +39,7 @@ const categorizeProjectPrompt = ai.definePrompt({
     name: 'categorizeProjectPrompt',
     input: { schema: z.object({ repo: z.any() }) },
     output: { schema: GetGithubProjectsOutputSchema },
-    prompt: `You are an expert at analyzing GitHub repositories. Based on the repository information (name, description, topics, language), categorize the projects into one of three categories: 'dataScientist', 'dataEngineer', or 'dataAnalyst'. Also generate a concise, one-sentence portfolio-ready description, a two-word hint for an image, and list the primary language as a tool.
+    prompt: `You are an expert at analyzing GitHub repositories. Based on the repository information (name, description, language), categorize the projects into one of three categories: 'dataScientist', 'dataEngineer', or 'dataAnalyst'. Also generate a concise, one-sentence portfolio-ready description, a two-word hint for an image, and list the primary language as a tool.
 
     Analyze the following repositories and return them in the specified JSON format.
 
@@ -49,7 +49,6 @@ const categorizeProjectPrompt = ai.definePrompt({
       Description: {{this.description}}
       URL: {{this.html_url}}
       Language: {{this.language}}
-      Topics: {{#each this.topics}}{{{this}}}{{/each}}
     {{/each}}
 
     Your response must only contain the JSON object.
@@ -78,7 +77,6 @@ const getGithubProjectsFlow = ai.defineFlow(
         description: repo.description,
         html_url: repo.html_url,
         language: repo.language,
-        topics: repo.topics
     }))});
 
     if (!output) {
