@@ -18,8 +18,8 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ]
 
-const resumeUrl = "https://github.com/vikasrkarjigi/resumes/raw/main/Vikas_Ravikumar_Karjigi_Resume.pdf";
-const embedResumeUrl = `https://docs.google.com/gview?url=${resumeUrl}&embedded=true`;
+const resumeUrl = "https://drive.google.com/file/d/10i0OKDJ_7YfxYNuhYfCGO9-ET2MUziKr/view?usp=drive_link";
+const embedResumeUrl = `https://drive.google.com/file/d/10i0OKDJ_7YfxYNuhYfCGO9-ET2MUziKr/preview`;
 
 
 export function Header() {
@@ -106,12 +106,12 @@ export function Header() {
                         frameBorder="0"
                         title="Vikas Ravikumar Karjigi Resume"
                     >
-                        Your browser does not support iframes. Please <a href={resumeUrl}>download the resume</a> to view it.
+                        Your browser does not support iframes. Please <a href={resumeUrl} target="_blank" rel="noopener noreferrer">download the resume</a> to view it.
                     </iframe>
                 </div>
                 <div className="p-4 border-t flex justify-end flex-shrink-0">
                     <Button asChild>
-                        <a href={resumeUrl} download="Vikas_Ravikumar_Karjigi_Resume.pdf">
+                        <a href={resumeUrl} target="_blank" rel="noopener noreferrer" download>
                             <Download className="mr-2 h-4 w-4" />
                             Download
                         </a>
