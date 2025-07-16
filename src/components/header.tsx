@@ -1,11 +1,12 @@
 'use client'
 
-import { Github, Linkedin, Mail, FileText, Code2 } from 'lucide-react'
+import { Github, Linkedin, Mail, FileText, Code2, Download } from 'lucide-react'
 import Link from 'next/link'
 import { ThemeToggle } from './theme-toggle'
 import { Button } from './ui/button'
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 import { Menu } from 'lucide-react'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog'
 
 const navLinks = [
   { href: '#about', label: 'About' },
@@ -15,6 +16,10 @@ const navLinks = [
   { href: '#education', label: 'Education' },
   { href: '#contact', label: 'Contact' },
 ]
+
+const resumeUrl = "https://github.com/vikasrkarjigi/resumes/raw/main/Vikas_Ravikumar_Karjigi_Resume.pdf";
+const embedResumeUrl = `https://docs.google.com/gview?url=${resumeUrl}&embedded=true`;
+
 
 export function Header() {
   return (
@@ -82,11 +87,38 @@ export function Header() {
               <Mail className="h-5 w-5" />
             </a>
           </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <a href="/resume.pdf" download="resume.pdf" aria-label="Download Resume">
-              <FileText className="h-5 w-5" />
-            </a>
-          </Button>
+
+          <Dialog>
+            <DialogTrigger asChild>
+                <Button variant="ghost" size="icon" aria-label="View Resume">
+                    <FileText className="h-5 w-5" />
+                </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-4xl h-[90vh] p-0">
+                <DialogHeader className="p-4 border-b">
+                    <DialogTitle>My Resume</DialogTitle>
+                </DialogHeader>
+                <div className="flex-grow overflow-hidden">
+                    <iframe 
+                        src={embedResumeUrl} 
+                        className="w-full h-full" 
+                        frameBorder="0"
+                        title="Vikas Ravikumar Karjigi Resume"
+                    >
+                        Your browser does not support iframes. Please <a href={resumeUrl}>download the resume</a> to view it.
+                    </iframe>
+                </div>
+                <div className="p-4 border-t flex justify-end">
+                    <Button asChild>
+                        <a href={resumeUrl} download="Vikas_Ravikumar_Karjigi_Resume.pdf">
+                            <Download className="mr-2 h-4 w-4" />
+                            Download
+                        </a>
+                    </Button>
+                </div>
+            </DialogContent>
+          </Dialog>
+
           <ThemeToggle />
         </div>
       </div>
