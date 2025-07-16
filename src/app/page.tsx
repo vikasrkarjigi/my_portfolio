@@ -15,8 +15,8 @@ export default function Home() {
       <main className="flex flex-col">
         <Hero />
         <AboutMe />
-        <Experience />
         <TechStacks />
+        <Experience />
         <Projects />
         <Education />
         <Certifications />
