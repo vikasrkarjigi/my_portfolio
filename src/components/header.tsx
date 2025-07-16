@@ -6,7 +6,8 @@ import { ThemeToggle } from './theme-toggle'
 import { Button } from './ui/button'
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 import { Menu } from 'lucide-react'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog'
+import { DialogTrigger } from '@radix-ui/react-dialog'
 
 const navLinks = [
   { href: '#about', label: 'About' },
@@ -94,8 +95,8 @@ export function Header() {
                     <FileText className="h-5 w-5" />
                 </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-4xl h-[90vh] p-0">
-                <DialogHeader className="p-4 border-b">
+            <DialogContent className="max-w-4xl h-[90vh] p-0 flex flex-col">
+                <DialogHeader className="p-4 border-b flex-shrink-0">
                     <DialogTitle>My Resume</DialogTitle>
                 </DialogHeader>
                 <div className="flex-grow overflow-hidden">
@@ -108,7 +109,7 @@ export function Header() {
                         Your browser does not support iframes. Please <a href={resumeUrl}>download the resume</a> to view it.
                     </iframe>
                 </div>
-                <div className="p-4 border-t flex justify-end">
+                <div className="p-4 border-t flex justify-end flex-shrink-0">
                     <Button asChild>
                         <a href={resumeUrl} download="Vikas_Ravikumar_Karjigi_Resume.pdf">
                             <Download className="mr-2 h-4 w-4" />
