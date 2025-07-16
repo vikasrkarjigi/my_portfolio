@@ -1,5 +1,6 @@
 import { Header } from "@/components/header";
-import { About } from "@/components/sections/about";
+import { AboutMe } from "@/components/sections/about-me";
+import { Hero } from "@/components/sections/hero";
 import { Certifications } from "@/components/sections/certifications";
 import { Contact } from "@/components/sections/contact";
 import { Education } from "@/components/sections/education";
@@ -12,7 +13,8 @@ export default function Home() {
     <div className="flex min-h-screen w-full flex-col">
       <Header />
       <main className="flex flex-col">
-        <About />
+        <Hero />
+        <AboutMe />
         <Experience />
         <TechStacks />
         <Projects />

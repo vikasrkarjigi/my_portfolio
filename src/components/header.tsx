@@ -10,7 +10,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog'
 import { DialogTrigger } from '@radix-ui/react-dialog'
 
 const navLinks = [
-  { href: '#about', label: 'About' },
+  { href: '#hero', label: 'Home' },
+  { href: '#about-me', label: 'About' },
   { href: '#experience', label: 'Experience' },
   { href: '#tech-stacks', label: 'Tech' },
   { href: '#projects', label: 'Projects' },
@@ -18,7 +19,7 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ]
 
-const resumeUrl = "https://drive.google.com/file/d/10i0OKDJ_7YfxYNuhYfCGO9-ET2MUziKr/view?usp=drive_link";
+const resumeUrl = "https://drive.google.com/file/d/10i0OKDJ_7YfxYNuhYfCGO9-ET2MUziKr/view?usp=sharing";
 const embedResumeUrl = `https://drive.google.com/file/d/10i0OKDJ_7YfxYNuhYfCGO9-ET2MUziKr/preview`;
 
 
@@ -74,12 +75,12 @@ export function Header() {
 
         <div className="flex flex-1 items-center justify-end space-x-2">
           <Button variant="ghost" size="icon" asChild>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <a href="https://github.com/vikasrkarjigi" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <Github className="h-5 w-5" />
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/vikasrkarjigi/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <Linkedin className="h-5 w-5" />
             </a>
           </Button>
@@ -103,7 +104,7 @@ export function Header() {
                     <iframe 
                         src={embedResumeUrl} 
                         className="w-full h-full" 
-                        frameBorder="0"
+                        allow="autoplay"
                         title="Vikas Ravikumar Karjigi Resume"
                     >
                         Your browser does not support iframes. Please <a href={resumeUrl} target="_blank" rel="noopener noreferrer">download the resume</a> to view it.
