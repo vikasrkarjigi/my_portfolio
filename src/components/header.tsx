@@ -11,8 +11,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 const navLinks = [
   { href: '#hero', label: 'Home' },
   { href: '#about-me', label: 'About' },
-  { href: '#experience', label: 'Experience' },
   { href: '#tech-stacks', label: 'Tech' },
+  { href: '#experience', label: 'Experience' },
   { href: '#projects', label: 'Projects' },
   { href: '#education', label: 'Education' },
   { href: '#contact', label: 'Contact' },
