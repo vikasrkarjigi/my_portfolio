@@ -10,6 +10,13 @@ import { Textarea } from '../ui/textarea'
 import { useToast } from '@/hooks/use-toast'
 import { getTechStacksFromResume } from '@/app/actions'
 import { Skeleton } from '../ui/skeleton'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+
 
 type TechItem = {
   name: string
@@ -173,50 +180,52 @@ export function TechStacks() {
 
   return (
     <section id="tech-stacks" className="py-24 sm:py-32">
-      <div className="container mx-auto">
-        <div className="text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">My Tech Stack</h2>
-            <p className="mt-4 text-lg text-muted-foreground">Technologies I use to build modern, intelligent applications.</p>
-            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-              <DialogTrigger asChild>
-                <Button className="mt-6">
-                  <Lightbulb className="mr-2 h-4 w-4" />
-                  Extract from Resume
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[625px]">
-                <DialogHeader>
-                  <DialogTitle>Extract Tech Stacks with AI</DialogTitle>
-                  <DialogDescription>
-                    Paste the text from your resume below. Our AI will analyze it and automatically populate the tech stacks section.
-                  </DialogDescription>
-                </DialogHeader>
-                <div className="grid gap-4 py-4">
-                  <Textarea
-                    placeholder="Paste your resume text here..."
-                    className="h-64"
-                    value={resumeText}
-                    onChange={(e) => setResumeText(e.target.value)}
-                    disabled={isLoading}
-                  />
-                </div>
-                <DialogFooter>
-                  <Button type="submit" onClick={handleExtract} disabled={isLoading}>
-                    {isLoading ? 'Extracting...' : 'Extract Tech Stacks'}
+       <TooltipProvider>
+        <div className="container mx-auto">
+          <div className="text-center">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">My Tech Stack</h2>
+              <p className="mt-4 text-lg text-muted-foreground">Technologies I use to build modern, intelligent applications.</p>
+              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button className="mt-6">
+                    <Lightbulb className="mr-2 h-4 w-4" />
+                    Extract from Resume
                   </Button>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
-        </div>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[625px]">
+                  <DialogHeader>
+                    <DialogTitle>Extract Tech Stacks with AI</DialogTitle>
+                    <DialogDescription>
+                      Paste the text from your resume below. Our AI will analyze it and automatically populate the tech stacks section.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <Textarea
+                      placeholder="Paste your resume text here..."
+                      className="h-64"
+                      value={resumeText}
+                      onChange={(e) => setResumeText(e.target.value)}
+                      disabled={isLoading}
+                    />
+                  </div>
+                  <DialogFooter>
+                    <Button type="submit" onClick={handleExtract} disabled={isLoading}>
+                      {isLoading ? 'Extracting...' : 'Extract Tech Stacks'}
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+          </div>
 
-        <div className="mt-16 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {isLoading ? (
-             Array.from({ length: 6 }).map((_, i) => <TechCardSkeleton key={i} />)
-          ) : (
-            techStacks.map((stack) => <TechCard key={stack.category} {...stack} />)
-          )}
+          <div className="mt-16 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {isLoading ? (
+              Array.from({ length: 6 }).map((_, i) => <TechCardSkeleton key={i} />)
+            ) : (
+              techStacks.map((stack) => <TechCard key={stack.category} {...stack} />)
+            )}
+          </div>
         </div>
-      </div>
+      </TooltipProvider>
     </section>
   )
 }
@@ -231,10 +240,17 @@ function TechCard({ category, Icon, technologies }: TechStack) {
       <CardContent className="flex-grow pt-2">
         <div className="grid grid-cols-3 sm:grid-cols-4 gap-x-4 gap-y-6">
           {technologies.map(({ name, Icon: TechIcon }) => (
-            <div key={name} className="flex flex-col items-center justify-start gap-2">
-              <TechIcon className="w-8 h-8 text-foreground/80" />
-              <span className="text-xs text-center text-muted-foreground truncate w-full">{name}</span>
-            </div>
+             <Tooltip key={name}>
+              <TooltipTrigger asChild>
+                <div className="flex flex-col items-center justify-start gap-2">
+                  <TechIcon className="w-8 h-8 text-foreground/80" />
+                  <span className="text-xs text-center text-muted-foreground truncate w-full">{name}</span>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{name}</p>
+              </TooltipContent>
+            </Tooltip>
           ))}
         </div>
       </CardContent>
