@@ -285,7 +285,7 @@ export function TechStacks() {
         <div className="container mx-auto">
           <div className="text-center">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">My Tech Stack</h2>
-              <p className="mt-4 text-lg text-muted-foreground">Technologies I use to build modern, intelligent applications.</p>
+              <p className="mt-4 text-lg text-primary">From code to cloud — here’s what powers my work.</p>
               <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogTrigger asChild>
                   <Button className="mt-6">
