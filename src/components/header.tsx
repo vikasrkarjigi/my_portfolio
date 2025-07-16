@@ -99,7 +99,7 @@ export function Header() {
                 <DialogHeader className="p-4 border-b flex-shrink-0">
                     <DialogTitle>My Resume</DialogTitle>
                 </DialogHeader>
-                <div className="flex-grow overflow-hidden">
+                <div className="flex-grow overflow-auto">
                     <iframe 
                         src={embedResumeUrl} 
                         className="w-full h-full" 
