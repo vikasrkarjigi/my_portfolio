@@ -43,7 +43,10 @@ export function Experience() {
   return (
     <section id="experience" className="bg-muted/40 py-24 sm:py-32">
       <div className="container mx-auto">
-        <h2 className="text-center text-3xl font-bold tracking-tight sm:text-4xl font-headline">Work Experience</h2>
+        <div className="text-center">
+          <h2 className="text-center text-3xl font-bold tracking-tight sm:text-4xl font-headline">Work Experience</h2>
+          <p className="mt-4 text-lg text-primary">My professional journey and key contributions.</p>
+        </div>
         <div className="relative mt-12 grid gap-8 before:absolute before:inset-0 before:left-8 before:w-px before:bg-border md:before:left-1/2 md:before:-translate-x-1/2">
           {experiences.map((exp, index) => (
             <div key={index} className="relative md:grid md:grid-cols-2 md:gap-8">

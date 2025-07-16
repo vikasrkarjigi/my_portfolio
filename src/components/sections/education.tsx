@@ -20,7 +20,10 @@ export function Education() {
   return (
     <section id="education" className="py-24 sm:py-32">
       <div className="container mx-auto">
-        <h2 className="text-center text-3xl font-bold tracking-tight sm:text-4xl font-headline">Education</h2>
+        <div className="text-center">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">Education</h2>
+            <p className="mt-4 text-lg text-primary">My academic background and qualifications.</p>
+        </div>
         <div className="mt-12 grid gap-8 md:grid-cols-2">
           {educationData.map((edu, index) => (
             <Card key={index} className="flex items-start p-6 bg-background/50 backdrop-blur-sm shadow-lg">

@@ -106,7 +106,7 @@ export function Projects() {
       <div className="container mx-auto">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">Projects</h2>
-          <p className="mt-4 text-lg text-muted-foreground">A selection of my work across different domains, powered by my GitHub.</p>
+          <p className="mt-4 text-lg text-primary">A selection of my work across different domains, powered by my GitHub.</p>
         </div>
 
         <Tabs defaultValue="dataScientist" className="mt-12">

@@ -284,7 +284,7 @@ export function TechStacks() {
        <TooltipProvider>
         <div className="container mx-auto">
           <div className="text-center">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">My Tech Stack</h2>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">My Tech Arsenal</h2>
               <p className="mt-4 text-lg text-primary">From code to cloud — here’s what powers my work.</p>
               <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogTrigger asChild>
