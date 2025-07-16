@@ -4,7 +4,7 @@ import { ArrowRight, Trophy } from "lucide-react"
 const GuitarIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" {...props}>
       <path d="M9 18V5l12-2v13"/>
-      <path d="M9 9s-1.5-1.5-3-1.5-3 1.5-3 1.5S1.5 9 1.5 10.5 3 12 3 12s1.5 1.5 3 1.5 3-1.5 3-1.5"/>
+      <path d="M9 9s-1.5-1.5-3-1.5-3 1.5-3-1.5S1.5 9 1.5 10.5 3 12 3 12s1.5 1.5 3 1.5 3-1.5 3-1.5"/>
       <path d="M12 15s-1.5-1.5-3-1.5-3 1.5-3 1.5S4.5 15 4.5 16.5 6 18 6 18"/>
       <path d="m14 6 6 6"/>
       <path d="m11 9 6 6"/>
@@ -35,7 +35,7 @@ export function About() {
 
       <div className="mx-auto max-w-3xl text-center">
         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl font-headline">
-          Hi, I&apos;m Vikas Karjigi
+          Hi, I&apos;m Vikas Ravikumar Karjigi
         </h1>
         <p className="mt-6 text-lg leading-8 text-foreground/80">
           I specialize in building intelligent applications and scalable data solutions. With a passion for machine learning and cloud technologies, I transform complex problems into elegant, efficient code.
