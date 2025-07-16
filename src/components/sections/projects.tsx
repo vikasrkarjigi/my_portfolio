@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import { getProjectsFromGithub } from "@/app/actions";
 import { Skeleton } from "../ui/skeleton";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 type Project = {
   title: string;
@@ -24,20 +25,27 @@ type GroupedProjects = {
   dataAnalyst: Project[];
 };
 
+type Category = keyof GroupedProjects;
+
 
 export function Projects() {
   const [projects, setProjects] = useState<GroupedProjects | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [expandedCategories, setExpandedCategories] = useState<Set<Category>>(new Set());
 
   useEffect(() => {
     const fetchProjects = async () => {
       setIsLoading(true);
-      const result = await getProjectsFromGithub("vikasrkarjigi");
-      if (result.success && result.data) {
-        setProjects(result.data);
-      } else {
-        console.error("Failed to fetch projects", result.error);
-        // Set empty state to avoid errors
+      try {
+        const result = await getProjectsFromGithub("vikasrkarjigi");
+        if (result.success && result.data) {
+          setProjects(result.data);
+        } else {
+          console.error("Failed to fetch projects", result.error);
+          setProjects({ dataScientist: [], dataEngineer: [], dataAnalyst: [] });
+        }
+      } catch (error) {
+        console.error("Failed to fetch projects with error", error);
         setProjects({ dataScientist: [], dataEngineer: [], dataAnalyst: [] });
       }
       setIsLoading(false);
@@ -46,7 +54,19 @@ export function Projects() {
     fetchProjects();
   }, []);
 
-  const renderProjectList = (projectList: Project[] | undefined) => {
+  const toggleCategory = (category: Category) => {
+    setExpandedCategories(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(category)) {
+        newSet.delete(category);
+      } else {
+        newSet.add(category);
+      }
+      return newSet;
+    });
+  };
+
+  const renderProjectList = (projectList: Project[] | undefined, category: Category) => {
     if (isLoading) {
       return (
         <div className="grid gap-8 md:grid-cols-2 mt-8">
@@ -60,12 +80,24 @@ export function Projects() {
       return <p className="text-center mt-8 text-muted-foreground">No projects found in this category.</p>
     }
 
+    const isExpanded = expandedCategories.has(category);
+    const visibleProjects = isExpanded ? projectList : projectList.slice(0, 4);
+
     return (
-      <div className="grid gap-8 md:grid-cols-2 mt-8">
-        {projectList.map((project, index) => (
-          <ProjectCard key={index} {...project} />
-        ))}
-      </div>
+      <>
+        <div className="grid gap-8 md:grid-cols-2 mt-8">
+          {visibleProjects.map((project, index) => (
+            <ProjectCard key={index} {...project} />
+          ))}
+        </div>
+        {projectList.length > 4 && (
+          <div className="mt-8 text-center">
+            <Button onClick={() => toggleCategory(category)} variant="secondary">
+              {isExpanded ? 'Show Less' : 'Show More'}
+            </Button>
+          </div>
+        )}
+      </>
     );
   }
 
@@ -85,13 +117,13 @@ export function Projects() {
           </TabsList>
 
           <TabsContent value="dataScientist">
-            {renderProjectList(projects?.dataScientist)}
+            {renderProjectList(projects?.dataScientist, 'dataScientist')}
           </TabsContent>
           <TabsContent value="dataEngineer">
-            {renderProjectList(projects?.dataEngineer)}
+            {renderProjectList(projects?.dataEngineer, 'dataEngineer')}
           </TabsContent>
           <TabsContent value="dataAnalyst">
-             {renderProjectList(projects?.dataAnalyst)}
+             {renderProjectList(projects?.dataAnalyst, 'dataAnalyst')}
           </TabsContent>
         </Tabs>
       </div>
@@ -111,7 +143,7 @@ function ProjectCard(project: Project) {
               width={600}
               height={400}
               className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
-              data-ai-hint={project.description}
+              data-ai-hint={`${project.title} ${project.description}`}
             />
           </div>
         </CardHeader>
