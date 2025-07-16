@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Trophy } from "lucide-react"
+import { AnimatedTextSwitcher } from "../animated-text-switcher"
 
 const GuitarIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -22,6 +23,8 @@ const ChessKnightIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 
 export function About() {
+  const roles = ["Data Scientist", "AI/ML Engineer", "Data Engineer", "Data Analyst"];
+
   return (
     <section id="about" className="container relative mx-auto py-24 sm:py-32 overflow-hidden">
        <div aria-hidden="true" className="absolute inset-0 -z-10 -top-40 [mask-image:radial-gradient(100%_100%_at_top,white,transparent)]">
@@ -38,8 +41,11 @@ export function About() {
           <span className="block">Hi, I&apos;m</span>
           <span className="block text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">Vikas Ravikumar Karjigi</span>
         </h1>
+        <div className="mt-6 text-2xl font-semibold leading-8 text-foreground/80 h-8">
+            <AnimatedTextSwitcher phrases={roles} />
+        </div>
         <p className="mt-6 text-lg leading-8 text-foreground/80">
-          I specialize in building intelligent applications and scalable data solutions. With a passion for machine learning and cloud technologies, I transform complex problems into elegant, efficient code.
+          I transform complex problems into elegant, efficient code with a passion for machine learning and cloud technologies.
         </p>
         <div className="mt-10 flex items-center justify-center gap-x-6">
           <a href="#projects">
