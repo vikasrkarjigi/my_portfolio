@@ -3,25 +3,39 @@ import { Badge } from "@/components/ui/badge"
 
 const experiences = [
   {
-    company: "FutureTech Inc.",
+    company: "Pro-Vigil",
     role: "AI/ML Engineer",
-    period: "2021 - Present",
-    description: "Led the development of a recommendation engine, improving user engagement by 30%. Deployed scalable ML models on AWS SageMaker and developed CI/CD pipelines for MLOps.",
-    tags: ["Python", "TensorFlow", "AWS", "Docker", "Kubernetes"]
+    period: "Jul 2021 - Present",
+    description: "Developed and deployed a real-time surveillance system for object detection and classification. Engineered MLOps pipelines on GCP, improving model deployment frequency by 40%.",
+    tags: ["Python", "PyTorch", "GCP", "Docker", "Kubernetes", "Computer Vision"]
   },
   {
-    company: "DataDriven Corp.",
+    company: "Pro-Vigil",
     role: "Data Scientist",
-    period: "2019 - 2021",
-    description: "Built predictive models for customer churn analysis. Performed data exploration and feature engineering on large datasets, providing actionable insights to the marketing team.",
-    tags: ["R", "Scikit-learn", "SQL", "Tableau"]
+    period: "Feb 2021 - Jul 2021",
+    description: "Built predictive models to identify false alarms, reducing them by 25%. Conducted exploratory data analysis to inform feature engineering and model development.",
+    tags: ["Python", "Scikit-learn", "SQL", "Tableau", "Pandas"]
   },
   {
-    company: "Innovate Solutions",
-    role: "Software Developer Intern",
-    period: "Summer 2018",
-    description: "Contributed to a full-stack web application using React and Node.js. Wrote unit tests and participated in an agile development workflow.",
-    tags: ["JavaScript", "React", "Node.js", "Jest"]
+    company: "Allstate",
+    role: "Data Scientist",
+    period: "Jan 2020 - Aug 2020",
+    description: "Developed a text-classification model to categorize customer feedback, improving response times. Automated data processing workflows using Python and internal APIs.",
+    tags: ["Python", "NLP", "Pandas", "Scikit-learn", "API"]
+  },
+  {
+    company: "Allstate",
+    role: "Data Science Intern",
+    period: "Jun 2019 - Aug 2019",
+    description: "Assisted in the development of a fraud detection algorithm by analyzing patterns in claims data. Presented findings to senior data scientists.",
+    tags: ["Python", "R", "SQL", "Data Analysis"]
+  },
+  {
+    company: "The University of Texas at Dallas",
+    role: "Graduate Teaching Assistant",
+    period: "Jan 2019 - Dec 2019",
+    description: "Assisted professors in teaching courses on Database Systems and Algorithms. Graded assignments, conducted lab sessions, and provided support to over 100 students.",
+    tags: ["SQL", "Java", "Python", "Data Structures", "Algorithms"]
   }
 ]
 

@@ -35,7 +35,7 @@ export function About() {
 
       <div className="mx-auto max-w-3xl text-center">
         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl font-headline">
-          Hi, I&apos;m a Developer & AI Enthusiast
+          Hi, I&apos;m Vikas Karjigi
         </h1>
         <p className="mt-6 text-lg leading-8 text-foreground/80">
           I specialize in building intelligent applications and scalable data solutions. With a passion for machine learning and cloud technologies, I transform complex problems into elegant, efficient code.
