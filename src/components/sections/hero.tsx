@@ -12,7 +12,7 @@ export function Hero() {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent via-transparent"></div>
         </div>
       
-      <div className="text-center lg:text-left">
+      <div className="text-center">
         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl font-headline">
           <span className="block">Hi, I&apos;m</span>
           <span className="block text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">Vikas Ravikumar Karjigi</span>
@@ -20,7 +20,7 @@ export function Hero() {
         <div className="mt-6 text-2xl font-semibold leading-8 text-foreground/80 h-8">
             <AnimatedTextSwitcher phrases={roles} />
         </div>
-        <div className="mt-10 flex items-center justify-center lg:justify-start gap-x-6">
+        <div className="mt-10 flex items-center justify-center gap-x-6">
           <Link href="#projects">
             <Button className="group transition-shadow duration-300 hover:shadow-glow-primary">
               View My Work

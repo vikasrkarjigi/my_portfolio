@@ -6,8 +6,7 @@ import { ThemeToggle } from './theme-toggle'
 import { Button } from './ui/button'
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 import { Menu } from 'lucide-react'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog'
-import { DialogTrigger } from '@radix-ui/react-dialog'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog'
 
 const navLinks = [
   { href: '#hero', label: 'Home' },
