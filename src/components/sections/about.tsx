@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Trophy } from "lucide-react"
 import { AnimatedTextSwitcher } from "../animated-text-switcher"
+import Link from "next/link";
 
 const GuitarIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -36,26 +37,42 @@ export function About() {
             <Trophy className="absolute w-56 h-56 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30"/>
         </div>
 
-      <div className="mx-auto max-w-3xl text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl font-headline">
-          <span className="block">Hi, I&apos;m</span>
-          <span className="block text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">Vikas Ravikumar Karjigi</span>
-        </h1>
-        <div className="mt-6 text-2xl font-semibold leading-8 text-foreground/80 h-8">
-            <AnimatedTextSwitcher phrases={roles} />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-center">
+        <div className="lg:col-span-1 text-center lg:text-left">
+          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl font-headline">
+            <span className="block">Hi, I&apos;m</span>
+            <span className="block text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">Vikas Ravikumar Karjigi</span>
+          </h1>
+          <div className="mt-6 text-2xl font-semibold leading-8 text-foreground/80 h-8">
+              <AnimatedTextSwitcher phrases={roles} />
+          </div>
+          <div className="mt-10 flex items-center justify-center lg:justify-start gap-x-6">
+            <Link href="#projects">
+              <Button className="group transition-shadow duration-300 hover:shadow-glow-primary">
+                View My Work
+                <ArrowRight className="inline-block w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+            <Link href="#contact">
+              <Button variant="ghost">
+                Get in Touch <span aria-hidden="true">→</span>
+              </Button>
+            </Link>
+          </div>
         </div>
-        <div className="mt-10 flex items-center justify-center gap-x-6">
-          <a href="#projects">
-            <Button className="group transition-shadow duration-300 hover:shadow-glow-primary">
-              View My Work
-              <ArrowRight className="inline-block w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </a>
-          <a href="#contact">
-            <Button variant="ghost">
-              Get in Touch <span aria-hidden="true">→</span>
-            </Button>
-          </a>
+        <div className="lg:col-span-2">
+            <h2 className="text-3xl font-bold tracking-tight text-primary/90 sm:text-4xl font-headline mb-6">A Little About Me</h2>
+            <div className="space-y-4 text-lg text-foreground/80">
+              <p>
+                Hey there! I’m Vikas Ravikumar Karjigi, a curious and driven Data Scientist & AI/ML Engineer with 3+ years of hands-on experience turning ideas into real-world impact. Right now, I’m leveling up my skills through a Master’s in Data Science at Illinois Institute of Technology, Chicago, where I proudly hold a 4.0 GPA.
+              </p>
+              <p>
+                I spent over two years at Boeing, building scalable pipelines and automation systems that made data work smarter. More recently, I’ve been diving into cutting-edge research on secure and decentralized LLMs. Along the way, I’ve built an AI sports highlight generator with an 88% F1 score and slashed processing time by 98% in a real-time fraud detection pipeline. I love crafting systems that are fast, smart, and actually useful.
+              </p>
+              <p>
+                Lately, I’ve been especially excited about the rise of generative AI, LLMOps, and all things AI infrastructure. When I’m not building with code, you’ll probably find me deep in a game of chess or strumming away on my guitar. Always exploring, always creating.
+              </p>
+            </div>
         </div>
       </div>
     </section>
