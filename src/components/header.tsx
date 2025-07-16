@@ -109,14 +109,6 @@ export function Header() {
                         Your browser does not support iframes. Please <a href={resumeUrl} target="_blank" rel="noopener noreferrer">download the resume</a> to view it.
                     </iframe>
                 </div>
-                <div className="p-4 border-t flex justify-end flex-shrink-0">
-                    <Button asChild>
-                        <a href={resumeUrl} target="_blank" rel="noopener noreferrer" download>
-                            <Download className="mr-2 h-4 w-4" />
-                            Download
-                        </a>
-                    </Button>
-                </div>
             </DialogContent>
           </Dialog>
 
