@@ -44,9 +44,6 @@ export function About() {
         <div className="mt-6 text-2xl font-semibold leading-8 text-foreground/80 h-8">
             <AnimatedTextSwitcher phrases={roles} />
         </div>
-        <p className="mt-6 text-lg leading-8 text-foreground/80">
-          I transform complex problems into elegant, efficient code with a passion for machine learning and cloud technologies.
-        </p>
         <div className="mt-10 flex items-center justify-center gap-x-6">
           <a href="#projects">
             <Button className="group transition-shadow duration-300 hover:shadow-glow-primary">
