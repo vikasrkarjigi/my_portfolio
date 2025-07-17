@@ -84,7 +84,7 @@ export function Header() {
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
-            <a href="mailto:example@gmail.com" aria-label="Email">
+            <a href="mailto:vikasravikarjigi26@gmail.com" aria-label="Email">
               <Mail className="h-5 w-5" />
             </a>
           </Button>
