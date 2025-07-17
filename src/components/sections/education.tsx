@@ -26,7 +26,7 @@ export function Education() {
         </div>
         <div className="mt-12 grid gap-8 md:grid-cols-2">
           {educationData.map((edu, index) => (
-            <Card key={index} className="flex items-start p-6 bg-background/50 backdrop-blur-sm shadow-lg">
+            <Card key={index} className="flex items-start p-6 bg-background/50 backdrop-blur-sm shadow-lg transition-transform-shadow duration-300 hover:shadow-glow-primary hover:-translate-y-1">
               <div className="mr-6 flex-shrink-0">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <GraduationCap className="h-6 w-6" />
