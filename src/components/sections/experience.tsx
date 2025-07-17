@@ -14,7 +14,7 @@ const experiences = [
     },
     {
       company: "Illinois Institute of Technology",
-      role: "Teaching Assistant – Data Preparation and Analysis",
+      role: "Teaching Assistant",
       location: "Chicago, IL",
       period: "Jun 2025 – Present",
       description: [
@@ -68,7 +68,7 @@ export function Experience() {
             <div key={index} className="relative md:grid md:grid-cols-2 md:gap-8">
               <div className={`flex items-center justify-start md:justify-end ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
                 <div className="relative w-full">
-                  <Card className="shadow-lg">
+                  <Card className="shadow-lg transition-transform-shadow duration-300 hover:shadow-glow-primary hover:-translate-y-1">
                     <CardHeader>
                       <div className="flex items-center justify-between">
                         <CardTitle>{exp.role}</CardTitle>
