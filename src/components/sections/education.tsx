@@ -6,7 +6,8 @@ const educationData = [
     institution: "Illinois Institute of Technology, Chicago, IL",
     degree: "Master of Applied Science in Data Science",
     period: "Aug 2024 – Present",
-    details: "GPA: 4.0/4.0. Core Courses: Big Data Technologies, Data Preparation and Analysis, Regression, Machine Learning, Time Series, Monte Carlo Methods, Project Management."
+    gpa: "GPA: 4.0/4.0",
+    details: "Core Courses: Big Data Technologies, Data Preparation and Analysis, Regression, Machine Learning, Time Series, Monte Carlo Methods, Project Management."
   },
   {
     institution: "RV College of Engineering, Bengaluru, India",
@@ -35,7 +36,10 @@ export function Education() {
               <div>
                 <CardTitle className="font-headline text-xl">{edu.degree}</CardTitle>
                 <CardDescription className="mt-1">{edu.institution}</CardDescription>
-                <p className="mt-2 text-sm text-muted-foreground">{edu.period}</p>
+                <div className="mt-2 flex items-center justify-between text-sm text-muted-foreground">
+                  <span>{edu.period}</span>
+                  {edu.gpa && <span className="font-semibold">{edu.gpa}</span>}
+                </div>
                 <p className="mt-4 text-sm text-foreground/80">{edu.details}</p>
               </div>
             </Card>
