@@ -3,7 +3,7 @@ import { GraduationCap } from "lucide-react"
 
 const educationData = [
   {
-    institution: "Illinois Institute of Technology, Chicago, IL",
+    institution: "Illinois Institute of Technology, Chicago, IL, USA",
     degree: "Master of Applied Science in Data Science",
     period: "Aug 2024 – Present",
     gpa: "GPA: 4.0/4.0",
