@@ -1,18 +1,18 @@
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardTitle, CardDescription } from "@/components/ui/card"
 import { GraduationCap } from "lucide-react"
 
 const educationData = [
   {
-    institution: "University of Technology",
-    degree: "M.S. in Computer Science",
-    period: "2017 - 2019",
-    details: "Specialized in Artificial Intelligence and Machine Learning. Thesis on 'Scalable Deep Learning Models'."
+    institution: "Illinois Institute of Technology, Chicago, IL",
+    degree: "Master of Applied Science in Data Science",
+    period: "Aug 2024 – Present",
+    details: "GPA: 4.0/4.0. Core Courses: Big Data Technologies, Data Preparation and Analysis, Regression, Machine Learning, Time Series, Monte Carlo Methods, Project Management."
   },
   {
-    institution: "State University",
-    degree: "B.S. in Software Engineering",
-    period: "2013 - 2017",
-    details: "Graduated with honors. Coursework included Data Structures, Algorithms, and Database Systems."
+    institution: "RV College of Engineering, Bengaluru, India",
+    degree: "Bachelor of Engineering in Electronics and Communication",
+    period: "Aug 2018 – Aug 2022",
+    details: "Completed comprehensive coursework in electronics, communication systems, and signal processing."
   }
 ]
 
@@ -33,10 +33,10 @@ export function Education() {
                 </div>
               </div>
               <div>
-                <CardTitle className="font-headline">{edu.degree}</CardTitle>
+                <CardTitle className="font-headline text-xl">{edu.degree}</CardTitle>
                 <CardDescription className="mt-1">{edu.institution}</CardDescription>
                 <p className="mt-2 text-sm text-muted-foreground">{edu.period}</p>
-                <p className="mt-2 text-sm text-foreground/80">{edu.details}</p>
+                <p className="mt-4 text-sm text-foreground/80">{edu.details}</p>
               </div>
             </Card>
           ))}
