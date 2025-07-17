@@ -2,6 +2,8 @@
 
 import { extractTechStacks } from '@/ai/flows/extract-tech-stacks-from-resume'
 import { getGithubProjects } from '@/ai/flows/get-github-projects-flow';
+import { answerQuery } from '@/ai/flows/chatbot-flow';
+
 
 export async function getTechStacksFromResume(resumeText: string) {
   try {
@@ -18,7 +20,6 @@ export async function getProjectsFromGithub(username: string) {
   try {
     const result = await getGithubProjects({ username });
     
-    // Group projects by category
     const groupedProjects = result.projects.reduce((acc, project) => {
       const category = project.category as 'dataScientist' | 'dataEngineer' | 'dataAnalyst';
       if (!acc[category]) {
@@ -34,4 +35,15 @@ export async function getProjectsFromGithub(username: string) {
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
     return { success: false, error: `Failed to get projects from GitHub. ${errorMessage}` };
   }
+}
+
+export async function getChatbotResponse(query: string) {
+    try {
+        const result = await answerQuery({ query });
+        return { success: true, data: result.response };
+    } catch (error) {
+        console.error('Error getting chatbot response:', error);
+        const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
+        return { success: false, error: `Failed to get response. ${errorMessage}` };
+    }
 }

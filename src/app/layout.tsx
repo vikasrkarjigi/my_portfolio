@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
+import { Chatbot } from '@/components/chatbot';
 
 export const metadata: Metadata = {
   title: 'CyberPortfolio',
@@ -24,6 +25,7 @@ export default function RootLayout({
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent via-transparent" />
         </div>
         {children}
+        <Chatbot />
         <Toaster />
       </body>
     </html>
