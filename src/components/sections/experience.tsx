@@ -1,42 +1,58 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { CheckCircle2 } from "lucide-react"
 
 const experiences = [
-  {
-    company: "Pro-Vigil",
-    role: "AI/ML Engineer",
-    period: "Jul 2021 - Present",
-    description: "Developed and deployed a real-time surveillance system for object detection and classification. Engineered MLOps pipelines on GCP, improving model deployment frequency by 40%.",
-    tags: ["Python", "PyTorch", "GCP", "Docker", "Kubernetes", "Computer Vision"]
-  },
-  {
-    company: "Pro-Vigil",
-    role: "Data Scientist",
-    period: "Feb 2021 - Jul 2021",
-    description: "Built predictive models to identify false alarms, reducing them by 25%. Conducted exploratory data analysis to inform feature engineering and model development.",
-    tags: ["Python", "Scikit-learn", "SQL", "Tableau", "Pandas"]
-  },
-  {
-    company: "Allstate",
-    role: "Data Scientist",
-    period: "Jan 2020 - Aug 2020",
-    description: "Developed a text-classification model to categorize customer feedback, improving response times. Automated data processing workflows using Python and internal APIs.",
-    tags: ["Python", "NLP", "Pandas", "Scikit-learn", "API"]
-  },
-  {
-    company: "Allstate",
-    role: "Data Science Intern",
-    period: "Jun 2019 - Aug 2019",
-    description: "Assisted in the development of a fraud detection algorithm by analyzing patterns in claims data. Presented findings to senior data scientists.",
-    tags: ["Python", "R", "SQL", "Data Analysis"]
-  },
-  {
-    company: "The University of Texas at Dallas",
-    role: "Graduate Teaching Assistant",
-    period: "Jan 2019 - Dec 2019",
-    description: "Assisted professors in teaching courses on Database Systems and Algorithms. Graded assignments, conducted lab sessions, and provided support to over 100 students.",
-    tags: ["SQL", "Java", "Python", "Data Structures", "Algorithms"]
-  }
+    {
+      company: "Illinois Institute of Technology",
+      role: "AI/ML Research Assistant",
+      location: "Chicago, IL",
+      period: "Jun 2025 – Present",
+      description: [
+        "Designed a reinforcement learning pipeline using PPO in OpenAI Gymnasium (Ant-v4) with MuJoCo physics engine and Stable-Baselines3.",
+        "Integrated trained agents into a custom Unity 3D environment using socket programming and Oculus VR for immersive RL visualization."
+      ]
+    },
+    {
+      company: "Illinois Institute of Technology",
+      role: "Teaching Assistant – Data Preparation and Analysis",
+      location: "Chicago, IL",
+      period: "Jun 2025 – Present",
+      description: [
+        "Mentored graduate students in data wrangling, feature engineering, dimensionality reduction, and model evaluation using Python, R, SQL, and Pandas.",
+        "Reinforced data science concepts during lab sessions, project reviews, and code debugging."
+      ]
+    },
+    {
+      company: "Open Avenues Foundation",
+      role: "Data Scientist – Build Fellow Consultant",
+      location: "Chicago, IL",
+      period: "Sep 2024 – May 2025",
+      description: [
+        "Built a computer vision pipeline to detect and classify highlight-worthy moments in volleyball using OpenCV and motion-based features, achieving 88% F1-score.",
+        "Automated 1–2 minute highlight reel generation, reducing manual editing time by 80%."
+      ]
+    },
+    {
+      company: "Boeing India Private Limited",
+      role: "Data Analyst",
+      location: "Bengaluru, India",
+      period: "Aug 2022 – Jul 2024",
+      description: [
+        "Improved booking efficiency by 30% through SQL pipelines across MySQL and MSSQL for real-time KPI dashboards.",
+        "Saved $60K+ annually by reducing reporting latency by 98% using stored procedures and indexing.",
+        "Built standardized SQL templates and automated 500+ data validation checks with Python to ensure compliance."
+      ]
+    },
+    {
+      company: "Exposys Data Labs",
+      role: "Data Analyst Intern",
+      location: "Remote, India",
+      period: "Jul 2019 – Sep 2019",
+      description: [
+        "Built a Python-based ETL pipeline using Pandas and MySQL to clean and normalize 25K+ records.",
+        "Reduced manual preparation by 60% and enabled faster feature extraction for ML."
+      ]
+    }
 ]
 
 export function Experience() {
@@ -58,15 +74,17 @@ export function Experience() {
                         <CardTitle>{exp.role}</CardTitle>
                         <p className="text-sm text-muted-foreground">{exp.period}</p>
                       </div>
-                      <CardDescription>{exp.company}</CardDescription>
+                      <CardDescription>{`${exp.company} - ${exp.location}`}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-sm text-foreground/80 mb-4">{exp.description}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {exp.tags.map(tag => (
-                          <Badge key={tag} variant="secondary">{tag}</Badge>
+                      <ul className="space-y-3">
+                        {exp.description.map((point, i) => (
+                          <li key={i} className="flex items-start">
+                            <CheckCircle2 className="mr-3 mt-1 h-4 w-4 flex-shrink-0 text-primary" />
+                            <span className="text-sm text-foreground/80">{point}</span>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
                     </CardContent>
                   </Card>
                   <div className="absolute left-8 top-8 -z-10 h-4 w-4 rounded-full bg-primary shadow-glow-primary md:left-auto md:right-[-2.05rem]"></div>
