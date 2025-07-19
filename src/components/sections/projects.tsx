@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from "next/image"
@@ -108,7 +109,7 @@ export function Projects() {
       <div className="container mx-auto">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">Passion Projects</h2>
-          <p className="mt-2 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">A selection of my work across different domains, powered by my GitHub.</p>
+          <p className="mt-2 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">Projects where the purpose, not just the technology, is the primary driver.</p>
         </div>
 
         <Tabs defaultValue="dataScientist" className="mt-12">
