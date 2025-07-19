@@ -1,4 +1,4 @@
-import { Trophy } from "lucide-react"
+import { Trophy, Crown } from "lucide-react"
 
 const GuitarIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -30,7 +30,9 @@ export function AboutMe() {
 
       <div className="container mx-auto max-w-4xl text-center">
         <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">Reinforcement Loop</h2>
-        <p className="mt-4 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">Policy optimized by checkmates and power chords.</p>
+        <p className="mt-4 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))] flex items-center justify-center gap-2">
+            Policy optimized by two constants: 64 squares <Crown className="inline-block h-5 w-5"/>, 6 steel strings <GuitarIcon className="inline-block h-5 w-5"/>.
+        </p>
         <div className="mt-8 space-y-6 text-lg text-foreground/80 text-left">
           <p>
             Hey there! I’m Vikas Ravikumar Karjigi, a curious and driven Data Scientist & AI/ML Engineer with 3+ years of hands-on experience turning ideas into real-world impact. Right now, I’m leveling up my skills through a Master’s in Data Science at Illinois Institute of Technology, Chicago, where I proudly hold a 4.0 GPA.
