@@ -17,7 +17,7 @@ export function Contact() {
               </Button>
             </a>
             <a href="https://www.linkedin.com/in/vikasrkarjigi/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-              <Button size="lg" variant="secondary" className="w-full">
+              <Button size="lg" variant="ghost" className="w-full">
                 <Linkedin className="mr-2 h-5 w-5" /> Connect on LinkedIn
               </Button>
             </a>
