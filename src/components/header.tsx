@@ -1,4 +1,5 @@
 
+
 'use client'
 
 import { Github, Linkedin, Mail, FileText, Download } from 'lucide-react'
@@ -23,7 +24,6 @@ const navLinks = [
 ]
 
 const rawResumeUrl = "https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Vikas_Ravikumar_Karjigi_Resume.pdf";
-const resumeUrl = `https://docs.google.com/gview?url=${rawResumeUrl}&embedded=true`;
 const profileImageUrl = "https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Profile%20Photo_1.jpeg";
 
 export function Header() {
@@ -88,12 +88,18 @@ export function Header() {
                 </Button>
             </DialogTrigger>
             <DialogContent className="max-w-4xl h-[90vh] p-0 flex flex-col">
-                <DialogHeader className="p-4 border-b flex-shrink-0">
+                <DialogHeader className="p-4 border-b flex-shrink-0 flex flex-row items-center justify-between">
                     <DialogTitle>Resume - Vikas Ravikumar Karjigi</DialogTitle>
+                    <a href={rawResumeUrl} download="Vikas_Ravikumar_Karjigi_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                        <Button variant="outline" size="sm">
+                            <Download className="h-4 w-4 mr-2" />
+                            Download
+                        </Button>
+                    </a>
                 </DialogHeader>
                 <div className="flex-grow overflow-auto">
                     <iframe 
-                        src={resumeUrl} 
+                        src={rawResumeUrl} 
                         className="w-full h-full" 
                         allow="autoplay"
                         title="Vikas Ravikumar Karjigi Resume"
