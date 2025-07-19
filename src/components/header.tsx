@@ -23,7 +23,7 @@ const navLinks = [
 
 const resumeUrl = "https://drive.google.com/file/d/10i0OKDJ_7YfxYNuhYfCGO9-ET2MUziKr/view?usp=sharing";
 const embedResumeUrl = `https://drive.google.com/file/d/10i0OKDJ_7YfxYNuhYfCGO9-ET2MUziKr/preview`;
-const profileImageUrl = "https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Profile%20Photo.jpeg";
+const profileImageUrl = "https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Profile%20Photo_1.jpeg";
 
 export function Header() {
   return (
