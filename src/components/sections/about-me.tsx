@@ -29,8 +29,8 @@ export function AboutMe() {
         </div>
 
       <div className="container mx-auto max-w-4xl text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-primary/90 sm:text-4xl font-headline">A Little About Me</h2>
-        <p className="mt-4 text-lg text-primary">Beyond the code: my story, my passions.</p>
+        <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">A Reinforcement Loop</h2>
+        <p className="mt-4 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">Policy optimized by checkmates and power chords.</p>
         <div className="mt-8 space-y-6 text-lg text-foreground/80 text-left">
           <p>
             Hey there! I’m Vikas Ravikumar Karjigi, a curious and driven Data Scientist & AI/ML Engineer with 3+ years of hands-on experience turning ideas into real-world impact. Right now, I’m leveling up my skills through a Master’s in Data Science at Illinois Institute of Technology, Chicago, where I proudly hold a 4.0 GPA.
