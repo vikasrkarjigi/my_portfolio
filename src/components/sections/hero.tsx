@@ -115,7 +115,7 @@ export function Hero() {
                 <DialogHeader className="sr-only">
                     <DialogTitle>Vikas Ravikumar Karjigi Resume</DialogTitle>
                 </DialogHeader>
-                <iframe src={resumeUrl} className="w-full h-full" />
+                <iframe src={`https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(resumeUrl)}`} className="w-full h-full" />
             </DialogContent>
           </Dialog>
 
