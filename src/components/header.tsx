@@ -31,7 +31,7 @@ export function Header() {
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <Avatar className="h-8 w-8">
-              <AvatarImage src="https://placehold.co/40x40.png" alt="Vikas Ravikumar Karjigi" data-ai-hint="profile photo" />
+              <AvatarImage src="https://placehold.co/40x40" alt="Vikas Ravikumar Karjigi" data-ai-hint="profile photo" />
               <AvatarFallback>VK</AvatarFallback>
             </Avatar>
             <span className="hidden font-bold sm:inline-block">Karjigi Portfolio</span>
@@ -60,7 +60,7 @@ export function Header() {
             <SheetContent side="left">
                 <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
                     <Avatar className="h-8 w-8">
-                      <AvatarImage src="https://placehold.co/40x40.png" alt="Vikas Ravikumar Karjigi" data-ai-hint="profile photo" />
+                      <AvatarImage src="https://placehold.co/40x40" alt="Vikas Ravikumar Karjigi" data-ai-hint="profile photo" />
                       <AvatarFallback>VK</AvatarFallback>
                     </Avatar>
                     <span className="font-bold sm:inline-block">Karjigi Portfolio</span>
