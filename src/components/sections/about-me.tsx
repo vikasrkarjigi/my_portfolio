@@ -27,14 +27,8 @@ const ChessKnightIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export function AboutMe() {
   return (
     <section id="about-me" className="relative bg-muted/40 py-24 sm:py-32 overflow-hidden">
-        <div className="absolute inset-0 -z-10 text-primary/5 [filter:blur(18px)]">
-            <GuitarIcon className="absolute w-64 h-64 top-10 left-[-5rem] opacity-50 rotate-[30deg]"/>
-            <ChessKnightIcon className="absolute w-72 h-72 bottom-[-5rem] right-[-6rem] opacity-50 rotate-[-20deg]"/>
-            <Trophy className="absolute w-56 h-56 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30"/>
-        </div>
-
       <div className="container mx-auto max-w-4xl text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">Reinforcement Loop</h2>
+        <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">A Reinforcement Loop</h2>
         <p className="mt-2 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">
             Reward signal: the logic of a checkmate, the resolve of a power chord.
         </p>
