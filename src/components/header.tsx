@@ -22,8 +22,7 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ]
 
-const resumeUrl = "https://drive.google.com/file/d/10i0OKDJ_7YfxYNuhYfCGO9-ET2MUziKr/view?usp=sharing";
-const embedResumeUrl = `https://drive.google.com/file/d/10i0OKDJ_7YfxYNuhYfCGO9-ET2MUziKr/preview`;
+const resumeUrl = "https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Vikas%20Karjigi_Data%20Scientist.pdf";
 const profileImageUrl = "https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Profile%20Photo_1.jpeg";
 
 export function Header() {
@@ -89,11 +88,11 @@ export function Header() {
             </DialogTrigger>
             <DialogContent className="max-w-4xl h-[90vh] p-0 flex flex-col">
                 <DialogHeader className="p-4 border-b flex-shrink-0">
-                    <DialogTitle>My Resume</DialogTitle>
+                    <DialogTitle>Resume - Vikas Ravikumar Karjigi</DialogTitle>
                 </DialogHeader>
                 <div className="flex-grow overflow-auto">
                     <iframe 
-                        src={embedResumeUrl} 
+                        src={resumeUrl} 
                         className="w-full h-full" 
                         allow="autoplay"
                         title="Vikas Ravikumar Karjigi Resume"
