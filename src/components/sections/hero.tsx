@@ -49,6 +49,7 @@ export function Hero() {
       transition: {
         duration: 0.5,
         ease: "easeOut",
+        delay: letters.length * 0.05 + 0.5, // Delay until name animation is done
       },
     },
   };
@@ -72,16 +73,21 @@ export function Hero() {
           variants={otherItemsVariants}
         >
           <span className="block">Hi, I&apos;m</span>
-            <motion.span 
-              className="block text-primary"
-              variants={containerVariants}
-            >
+          <motion.div
+            className="animated-sparkle-text"
+            aria-label={name}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <span className="block text-primary">
               {letters.map((letter, index) => (
                 <motion.span key={index} variants={letterVariants} className="inline-block">
                   {letter === " " ? "\u00A0" : letter}
                 </motion.span>
               ))}
-            </motion.span>
+            </span>
+          </motion.div>
         </motion.h1>
         <motion.div 
           className="mt-6 text-2xl font-semibold leading-8 text-foreground/80 h-8"
