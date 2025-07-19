@@ -33,7 +33,7 @@ export function Header() {
             <Dialog>
                 <DialogTrigger asChild>
                     <Avatar className="h-8 w-8 cursor-pointer">
-                      <AvatarImage src={profileImageUrl} alt="Vikas Ravikumar Karjigi" className="object-cover"/>
+                      <AvatarImage src={profileImageUrl} alt="Vikas Ravikumar Karjigi" className="object-cover scale-105"/>
                       <AvatarFallback>VK</AvatarFallback>
                     </Avatar>
                 </DialogTrigger>
@@ -73,7 +73,7 @@ export function Header() {
                     <Dialog>
                         <DialogTrigger asChild>
                             <Avatar className="h-8 w-8 cursor-pointer">
-                              <AvatarImage src={profileImageUrl} alt="Vikas Ravikumar Karjigi" className="object-cover"/>
+                              <AvatarImage src={profileImageUrl} alt="Vikas Ravikumar Karjigi" className="object-cover scale-105"/>
                               <AvatarFallback>VK</AvatarFallback>
                             </Avatar>
                         </DialogTrigger>
