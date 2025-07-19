@@ -9,6 +9,7 @@ import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 import { Menu } from 'lucide-react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
+import Image from 'next/image'
 
 const navLinks = [
   { href: '#hero', label: 'Home' },
@@ -31,7 +32,7 @@ export function Header() {
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <Avatar className="h-8 w-8">
-              <AvatarImage src="https://placehold.co/40x40" alt="Vikas Ravikumar Karjigi" data-ai-hint="profile photo" />
+              <AvatarImage src="https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Profile%20Photo.jpeg" alt="Vikas Ravikumar Karjigi" />
               <AvatarFallback>VK</AvatarFallback>
             </Avatar>
             <span className="hidden font-bold sm:inline-block">Karjigi Portfolio</span>
@@ -60,7 +61,7 @@ export function Header() {
             <SheetContent side="left">
                 <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
                     <Avatar className="h-8 w-8">
-                      <AvatarImage src="https://placehold.co/40x40" alt="Vikas Ravikumar Karjigi" data-ai-hint="profile photo" />
+                      <AvatarImage src="https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Profile%20Photo.jpeg" alt="Vikas Ravikumar Karjigi" />
                       <AvatarFallback>VK</AvatarFallback>
                     </Avatar>
                     <span className="font-bold sm:inline-block">Karjigi Portfolio</span>
