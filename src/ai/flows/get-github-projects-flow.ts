@@ -50,7 +50,7 @@ const generateDescriptionPrompt = ai.definePrompt({
     Return only the JSON object.`,
 });
 
-type CategorizedRepo = GithubRepository & { category: 'dataScientist' | 'dataEngineer' | 'dataAnalyst' };
+type CategorizedRepo = GithubRepository & { category: 'dataScientist' | 'dataEngineer' | 'dataAnalyst' | 'other' };
 
 function categorizeAndFilterRepositories(repos: GithubRepository[]): CategorizedRepo[] {
     const categorizedRepos: CategorizedRepo[] = [];
@@ -91,7 +91,7 @@ const getGithubProjectsFlow = ai.defineFlow(
   async (input) => {
     const allRepos = await getPublicRepositories(input);
 
-    const userRepos = allRepos.filter(repo => repo.name !== input.username && !repo.fork);
+    const userRepos = allRepos.filter(repo => repo.name !== input.username);
     
     const filteredRepos = categorizeAndFilterRepositories(userRepos);
 
