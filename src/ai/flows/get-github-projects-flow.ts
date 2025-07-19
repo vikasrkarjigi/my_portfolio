@@ -8,7 +8,7 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { getPublicRepositories } from '@/services/github';
+import { getPublicRepositories, type GithubRepository } from '@/services/github';
 import { z } from 'genkit';
 import { generateProjectImage } from './generate-project-image-flow';
 
@@ -22,7 +22,7 @@ const ProjectSchema = z.object({
   description: z.string().describe("A concise, one-sentence description of the project, suitable for a portfolio."),
   tools: z.array(z.string()).describe('An array of languages or main technologies used in the project (e.g., Python, Jupyter, Pandas).'),
   image: z.string().describe('A generated image URL (data URI) for the project.'),
-  category: z.enum(['dataScientist', 'dataEngineer', 'dataAnalyst']).describe("The category of the project based on its content."),
+  category: z.enum(['dataScientist', 'dataEngineer', 'dataAnalyst', 'other']).describe("The category of the project based on its content."),
   url: z.string().describe('The URL of the GitHub repository.'),
 });
 
@@ -35,31 +35,35 @@ export async function getGithubProjects(input: GetGithubProjectsInput): Promise<
   return getGithubProjectsFlow(input);
 }
 
-const categorizeProjectPrompt = ai.definePrompt({
-    name: 'categorizeProjectPrompt',
-    input: { schema: z.object({ repo: z.any() }) },
-    output: { schema: GetGithubProjectsOutputSchema },
-    prompt: `You are an expert developer and portfolio curator. Your task is to analyze a list of GitHub repositories and format them for a portfolio website.
+const generateDescriptionPrompt = ai.definePrompt({
+    name: 'generateProjectDescriptionPrompt',
+    input: { schema: z.object({ name: z.string(), description: z.string().nullable() }) },
+    output: { schema: z.object({ description: z.string(), tools: z.array(z.string()) }) },
+    prompt: `You are an expert portfolio curator.
+    Based on the repository name and its original description, write a new, concise, one-sentence description suitable for a project card on a portfolio website.
+    Also, identify an array of key technologies or tools used (e.g., "Python", "Jupyter", "Pandas").
 
-For each repository, you must:
-1.  **Analyze and Categorize**: Look at the repository's name, description, languages, and tools to categorize it into ONE of the three roles: 'dataScientist', 'dataEngineer', or 'dataAnalyst'.
-    - **dataScientist**: Assign this category if the project involves machine learning (e.g., scikit-learn, TensorFlow, PyTorch), statistical modeling, or advanced data analysis and prediction.
-    - **dataEngineer**: Assign this category if the project involves data pipelines, ETL processes, database management, or infrastructure for data storage and processing (e.g., Airflow, Spark, Kafka).
-    - **dataAnalyst**: Assign this category if the project focuses on data cleaning, exploratory data analysis (EDA), and visualization (e.g., using libraries like Matplotlib, Seaborn, Plotly, or tools like Tableau).
-2.  **Write a concise, one-sentence description** suitable for a project card.
-3.  **Identify the key technologies and tools** used. This should be an array of strings, including the primary programming language and any mentioned frameworks or libraries (e.g., "Python", "Jupyter", "Pandas").
+    Repository Name: {{{name}}}
+    Original Description: {{{description}}}
 
-Analyze the following repositories and return the data in the specified JSON format. You must only return the JSON object.
-
-Repositories:
-{{#each repo}}
-- Name: {{this.name}}
-  Description: {{this.description}}
-  URL: {{this.html_url}}
-  Language: {{this.language}}
-{{/each}}
-`,
+    Return only the JSON object.`,
 });
+
+
+function categorizeRepository(repo: GithubRepository): 'dataScientist' | 'dataEngineer' | 'dataAnalyst' | 'other' {
+    const topics = repo.topics.map(t => t.toLowerCase());
+    if (topics.includes('ml-engineer') || topics.includes('data-science')) {
+      return 'dataScientist';
+    }
+    if (topics.includes('data-engineer')) {
+      return 'dataEngineer';
+    }
+    if (topics.includes('data-analyst')) {
+      return 'dataAnalyst';
+    }
+    return 'other'; // Fallback category
+}
+
 
 const getGithubProjectsFlow = ai.defineFlow(
   {
@@ -71,43 +75,51 @@ const getGithubProjectsFlow = ai.defineFlow(
   async (input) => {
     const repos = await getPublicRepositories(input);
 
-    const filteredRepos = repos.filter(repo => !repo.fork && repo.name !== input.username).slice(0, 6);
+    const filteredRepos = repos.filter(repo => !repo.fork && repo.name !== input.username).slice(0, 9);
 
     if (filteredRepos.length === 0) {
       return { projects: [] };
     }
     
-    let output;
-    try {
-        const { output: promptOutput } = await categorizeProjectPrompt({ repo: filteredRepos.map(repo => ({
-            name: repo.name,
-            description: repo.description,
-            html_url: repo.html_url,
-            language: repo.language,
-        }))});
-        output = promptOutput;
-    } catch (e) {
-        console.error("AI categorization failed, returning empty project list.", e);
-        return { projects: [] };
-    }
+    // Process repos to get descriptions and tools
+    const processedProjectsPromises = filteredRepos.map(async (repo) => {
+        try {
+            const { output } = await generateDescriptionPrompt({ name: repo.name, description: repo.description });
+            if (!output) return null;
+            
+            const category = categorizeRepository(repo);
+            if (category === 'other') return null; // Skip projects that don't fit categories
 
-
-    if (!output) {
-      // This case handles if the AI returns a null/undefined but valid response
+            return {
+                title: repo.name,
+                description: output.description,
+                tools: output.tools.length > 0 ? output.tools : (repo.language ? [repo.language] : ['Code']),
+                url: repo.html_url,
+                category,
+                image: '', // will be filled later
+            };
+        } catch (e) {
+            console.error(`Failed to process repo ${repo.name}:`, e);
+            return null;
+        }
+    });
+    
+    const processedProjects = (await Promise.all(processedProjectsPromises)).filter(p => p !== null) as Omit<z.infer<typeof ProjectSchema>, 'image'>[];
+    
+    if (processedProjects.length === 0) {
       return { projects: [] };
     }
 
     // Generate images in parallel
-    const imagePromises = output.projects.map(p => 
+    const imagePromises = processedProjects.map(p => 
         generateProjectImage({ title: p.title, description: p.description })
     );
     const generatedImages = await Promise.all(imagePromises);
 
     // Combine projects with generated images
-    const finalProjects = output.projects.map((p, index) => ({
+    const finalProjects = processedProjects.map((p, index) => ({
         ...p,
         image: generatedImages[index],
-        tools: p.tools.length > 0 ? p.tools : ['Code'],
     }));
 
     return { projects: finalProjects };
