@@ -15,20 +15,6 @@ const GuitarIcon = (props: React.SVGProps<SVGSVGElement>) => (
     </svg>
 );
 
-const ChessKingIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" {...props}>
-        <path d="M24 6c-2.2 0-4 1.8-4 4v2h8v-2c0-2.2-1.8-4-4-4zm-4 8v-2h8v2H20z" fill="#333"/>
-        <path d="M14 16c-1.1 0-2 .9-2 2v2c0 .6.4 1 1 1h22c.6 0 1-.4 1-1v-2c0-1.1-.9-2-2-2H14z" fill="#444"/>
-        <path d="M15 22h18v2H15z" fill="#555"/>
-        <path d="M16 25h16v12H16z" fill="#333"/>
-        <path d="M12 38h24v4H12z" fill="#444"/>
-        <path d="M18 27h2v8h-2z" fill="#555"/>
-        <path d="M23 27h2v8h-2z" fill="#555"/>
-        <path d="M28 27h2v8h-2z" fill="#555"/>
-        <path d="M12.5 10.5l-2-2L9 7l2 2zM35.5 10.5l2-2L39 7l-2 2z" fill="#333"/>
-    </svg>
-);
-
 const ChessKnightIcon = (props: React.SVGProps<SVGSVGElement>) => (
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <path d="M15.5 2.5a2.5 2.5 0 1 1-2.5 2.5 2.5 2.5 0 0 1 2.5-2.5z"/>
@@ -49,7 +35,7 @@ export function AboutMe() {
 
       <div className="container mx-auto max-w-4xl text-center">
         <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">Reinforcement Loop</h2>
-        <p className="mt-4 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">
+        <p className="mt-2 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">
             Reward signal: the logic of a checkmate, the resolve of a power chord.
         </p>
         <div className="mt-8 space-y-6 text-lg text-foreground/80 text-left">
