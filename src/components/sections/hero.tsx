@@ -10,18 +10,38 @@ import { motion } from "framer-motion";
 export function Hero() {
   const roles = ["Data Scientist", "AI/ML Engineer", "Data Engineer", "Data Analyst"];
   const name = "Vikas Ravikumar Karjigi";
+  const letters = Array.from(name);
 
   const containerVariants = {
     hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.05, delayChildren: i * 0.04 },
+    }),
+  };
+  
+  const letterVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 20,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+     },
     visible: {
       opacity: 1,
+      y: 0,
       transition: {
-        staggerChildren: 0.2,
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
       },
     },
   };
-  
-  const itemVariants = {
+
+  const otherItemsVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
@@ -29,18 +49,6 @@ export function Hero() {
       transition: {
         duration: 0.5,
         ease: "easeOut",
-      },
-    },
-  };
-
-  const nameVariants = {
-     hidden: { y: -20, opacity: 0 },
-     visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.7,
-        ease: [0.4, 0.0, 0.2, 1], // Custom cubic-bezier for a smooth fall
       },
     },
   };
@@ -61,27 +69,29 @@ export function Hero() {
       <div className="text-center">
         <motion.h1 
           className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl font-headline"
-          variants={itemVariants}
+          variants={otherItemsVariants}
         >
           <span className="block">Hi, I&apos;m</span>
-          <motion.span 
-            variants={nameVariants}
-            className="block text-primary"
-          >
-            <span className="animated-sparkle-text" aria-label={name}>
-              {name}
-            </span>
-          </motion.span>
+            <motion.span 
+              className="block text-primary"
+              variants={containerVariants}
+            >
+              {letters.map((letter, index) => (
+                <motion.span key={index} variants={letterVariants} className="inline-block">
+                  {letter === " " ? "\u00A0" : letter}
+                </motion.span>
+              ))}
+            </motion.span>
         </motion.h1>
         <motion.div 
           className="mt-6 text-2xl font-semibold leading-8 text-foreground/80 h-8"
-          variants={itemVariants}
+          variants={otherItemsVariants}
         >
             <AnimatedTextSwitcher phrases={roles} />
         </motion.div>
         <motion.div 
           className="mt-10 flex items-center justify-center gap-x-6"
-          variants={itemVariants}
+          variants={otherItemsVariants}
         >
           <Link href="#projects">
             <Button className="group transition-shadow duration-300 hover:shadow-glow-primary">
