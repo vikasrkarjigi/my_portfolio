@@ -77,7 +77,7 @@ function categorizeAndFilterRepositories(repos: GithubRepository[]): Categorized
 function formatRepositoryName(name: string): string {
   return name
     .replace(/-/g, ' ')
-    .replace(/_/g, ' ')
+    .replace(/_/g, ': ')
     .replace(/\b\w/g, char => char.toUpperCase());
 }
 
