@@ -50,27 +50,67 @@ const generateDescriptionPrompt = ai.definePrompt({
     Return only the JSON object.`,
 });
 
-type CategorizedRepo = GithubRepository & { category: 'dataScientist' | 'dataEngineer' | 'dataAnalyst' | 'other' };
+type CategorizedRepo = GithubRepository & { 
+  category: 'dataScientist' | 'dataEngineer' | 'dataAnalyst' | 'other';
+  order: number;
+};
 
 function categorizeAndFilterRepositories(repos: GithubRepository[]): CategorizedRepo[] {
     const categorizedRepos: CategorizedRepo[] = [];
     
     for (const repo of repos) {
-        const topics = repo.topics.map(t => t.toLowerCase());
         let category: CategorizedRepo['category'] | null = null;
-        
-        if (topics.includes('data-science') || topics.includes('ml-engineer')) {
-          category = 'dataScientist';
-        } else if (topics.includes('data-engineer')) {
-          category = 'dataEngineer';
-        } else if (topics.includes('data-analyst')) {
-          category = 'dataAnalyst';
-        }
+        let order = -1; // Default for non-numbered projects
 
+        for (const topic of repo.topics.map(t => t.toLowerCase())) {
+            const dsMatch = topic.match(/^data-science-(\d+)$/);
+            const deMatch = topic.match(/^data-engineer-(\d+)$/);
+            const daMatch = topic.match(/^data-analyst-(\d+)$/);
+
+            if (dsMatch) {
+              category = 'dataScientist';
+              order = parseInt(dsMatch[1], 10);
+              break;
+            }
+            if (deMatch) {
+              category = 'dataEngineer';
+              order = parseInt(deMatch[1], 10);
+              break;
+            }
+            if (daMatch) {
+              category = 'dataAnalyst';
+              order = parseInt(daMatch[1], 10);
+              break;
+            }
+        }
+        
+        // Fallback for non-numbered topics
+        if (!category) {
+            const topics = repo.topics.map(t => t.toLowerCase());
+            if (topics.includes('data-science') || topics.includes('ml-engineer')) {
+                category = 'dataScientist';
+            } else if (topics.includes('data-engineer')) {
+                category = 'dataEngineer';
+            } else if (topics.includes('data-analyst')) {
+                category = 'dataAnalyst';
+            }
+        }
+        
         if (category) {
-            categorizedRepos.push({ ...repo, category });
+            categorizedRepos.push({ ...repo, category, order });
         }
     }
+    
+    // Sort repositories: numbered ones first in descending order, then unnumbered ones
+    categorizedRepos.sort((a, b) => {
+        if (a.order !== -1 && b.order !== -1) {
+            return b.order - a.order; // Descending for numbered projects
+        }
+        if (a.order !== -1) return -1; // a is numbered, b is not
+        if (b.order !== -1) return 1;  // b is numbered, a is not
+        return 0; // both are unnumbered, keep original order (pushed date)
+    });
+    
     return categorizedRepos;
 }
 
