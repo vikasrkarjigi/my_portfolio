@@ -51,7 +51,7 @@ const generateDescriptionPrompt = ai.definePrompt({
 });
 
 
-function categorizeRepository(repo: GithubRepository): 'dataScientist' | 'dataEngineer' | 'dataAnalyst' | 'other' {
+function categorizeRepository(repo: GithubRepository): 'dataScientist' | 'dataEngineer' | 'dataAnalyst' {
     const topics = repo.topics.map(t => t.toLowerCase());
     if (topics.includes('ml-engineer') || topics.includes('data-science')) {
       return 'dataScientist';
@@ -62,7 +62,7 @@ function categorizeRepository(repo: GithubRepository): 'dataScientist' | 'dataEn
     if (topics.includes('data-analyst')) {
       return 'dataAnalyst';
     }
-    return 'other'; // Fallback category
+    return 'dataScientist'; // Fallback category
 }
 
 function formatRepositoryName(name: string): string {
@@ -96,8 +96,7 @@ const getGithubProjectsFlow = ai.defineFlow(
             if (!output) return null;
             
             const category = categorizeRepository(repo);
-            if (category === 'other') return null; // Skip projects that don't fit categories
-
+            
             return {
                 title: formatRepositoryName(repo.name),
                 description: output.description,
@@ -127,7 +126,7 @@ const getGithubProjectsFlow = ai.defineFlow(
     // Combine projects with generated images
     const finalProjects = processedProjects.map((p, index) => ({
         ...p,
-        image: generatedImages[index],
+        image: generatedImages[index] || 'https://placehold.co/600x400.png',
     }));
 
     return { projects: finalProjects };
