@@ -50,7 +50,7 @@ const generateDescriptionPrompt = ai.definePrompt({
     Return only the JSON object.`,
 });
 
-type CategorizedRepo = GithubRepository & { category: 'dataScientist' | 'dataEngineer' | 'dataAnalyst' | 'other' };
+type CategorizedRepo = GithubRepository & { category: 'dataScientist' | 'dataEngineer' | 'dataAnalyst' };
 
 function categorizeAndFilterRepositories(repos: GithubRepository[]): CategorizedRepo[] {
     const categorizedRepos: CategorizedRepo[] = [];
@@ -59,7 +59,7 @@ function categorizeAndFilterRepositories(repos: GithubRepository[]): Categorized
         const topics = repo.topics.map(t => t.toLowerCase());
         let category: CategorizedRepo['category'] | null = null;
         
-        if (topics.includes('ml-engineer') || topics.includes('data-science')) {
+        if (topics.includes('data-science') || topics.includes('ml-engineer')) {
           category = 'dataScientist';
         } else if (topics.includes('data-engineer')) {
           category = 'dataEngineer';
