@@ -83,7 +83,7 @@ const getGithubProjectsFlow = ai.defineFlow(
   async (input) => {
     const repos = await getPublicRepositories(input);
 
-    const filteredRepos = repos.filter(repo => repo.name !== input.username).slice(0, 9);
+    const filteredRepos = repos.filter(repo => repo.name !== input.username && !repo.fork).slice(0, 9);
 
     if (filteredRepos.length === 0) {
       return { projects: [] };
@@ -91,27 +91,32 @@ const getGithubProjectsFlow = ai.defineFlow(
     
     // Process repos to get descriptions and tools
     const processedProjectsPromises = filteredRepos.map(async (repo) => {
+        let description = repo.description || 'No description provided.';
+        let tools = repo.language ? [repo.language] : ['Code'];
+        
         try {
             const { output } = await generateDescriptionPrompt({ name: repo.name, description: repo.description });
-            if (!output) return null;
-            
-            const category = categorizeRepository(repo);
-            
-            return {
-                title: formatRepositoryName(repo.name),
-                description: output.description,
-                tools: output.tools.length > 0 ? output.tools : (repo.language ? [repo.language] : ['Code']),
-                url: repo.html_url,
-                category,
-                image: '', // will be filled later
-            };
+            if (output) {
+                description = output.description;
+                tools = output.tools.length > 0 ? output.tools : tools;
+            }
         } catch (e) {
-            console.error(`Failed to process repo ${repo.name}:`, e);
-            return null;
+            console.error(`AI description generation failed for repo ${repo.name}. Using default.`, e);
         }
+        
+        const category = categorizeRepository(repo);
+        
+        return {
+            title: formatRepositoryName(repo.name),
+            description: description,
+            tools: tools,
+            url: repo.html_url,
+            category,
+            image: '', // will be filled later
+        };
     });
     
-    const processedProjects = (await Promise.all(processedProjectsPromises)).filter(p => p !== null) as Omit<z.infer<typeof ProjectSchema>, 'image'>[];
+    const processedProjects = await Promise.all(processedProjectsPromises);
     
     if (processedProjects.length === 0) {
       return { projects: [] };
