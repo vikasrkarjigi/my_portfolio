@@ -49,8 +49,8 @@ export function AboutMe() {
 
       <div className="container mx-auto max-w-4xl text-center">
         <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">Reinforcement Loop</h2>
-        <p className="mt-4 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))] flex items-center justify-center gap-2">
-            Policy optimized by two constants: 64 squares <ChessKingIcon className="inline-block h-5 w-5"/>, 6 steel strings <GuitarIcon className="inline-block h-5 w-5"/>.
+        <p className="mt-4 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">
+            Reward signal: the logic of a checkmate, the resolve of a power chord.
         </p>
         <div className="mt-8 space-y-6 text-lg text-foreground/80 text-left">
           <p>
