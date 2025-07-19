@@ -9,6 +9,7 @@ import { getProjectsFromGithub } from "@/app/actions";
 import { Skeleton } from "../ui/skeleton";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { Github } from "lucide-react";
 
 type Project = {
   title: string;
@@ -133,7 +134,7 @@ export function Projects() {
 
 function ProjectCard(project: Project) {
   return (
-    <Link href={project.url} target="_blank" rel="noopener noreferrer">
+    <Link href={project.url} target="_blank" rel="noopener noreferrer" className="group">
       <Card className="overflow-hidden transition-transform-shadow duration-300 hover:shadow-glow-accent hover:-translate-y-1 h-full flex flex-col">
         <CardHeader className="p-0">
           <div className="aspect-video overflow-hidden">
@@ -142,13 +143,16 @@ function ProjectCard(project: Project) {
               alt={`Project image for ${project.title}`}
               width={600}
               height={400}
-              className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+              className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
               data-ai-hint={`${project.title} ${project.description}`}
             />
           </div>
         </CardHeader>
         <CardContent className="p-6 flex flex-col flex-grow">
-          <CardTitle className="mb-2 font-headline">{project.title}</CardTitle>
+          <div className="flex justify-between items-start mb-2">
+            <CardTitle className="font-headline group-hover:text-primary transition-colors">{project.title}</CardTitle>
+            <Github className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+          </div>
           <p className="text-sm text-muted-foreground mb-4 flex-grow">{project.description}</p>
           <div className="flex flex-wrap gap-2 mt-auto">
             {project.tools.map(tool => (
