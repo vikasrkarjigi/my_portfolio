@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className="font-body antialiased relative">
         <div aria-hidden="true" className="absolute inset-0 -z-10">
            <div className="absolute inset-0 bg-background" />
-           <div className="absolute inset-0 bg-gradient-to-br from-background via-transparent to-transparent dark:from-[#ba3429]/20 dark:via-[#9243a9]/20 dark:to-transparent" />
+           <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/20 via-40% to-primary/10" />
         </div>
         {children}
         <Chatbot />
