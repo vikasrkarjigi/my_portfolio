@@ -88,14 +88,8 @@ export function Header() {
                 </Button>
             </DialogTrigger>
             <DialogContent className="max-w-4xl h-[90vh] p-0 flex flex-col">
-                <DialogHeader className="p-4 border-b flex-shrink-0 flex flex-row items-center justify-between">
+                <DialogHeader className="p-4 border-b flex-shrink-0">
                     <DialogTitle>Resume - Vikas Ravikumar Karjigi</DialogTitle>
-                    <a href={rawResumeUrl} download="Vikas_Ravikumar_Karjigi_Resume.pdf" target="_blank" rel="noopener noreferrer">
-                        <Button variant="outline" size="sm">
-                            <Download className="h-4 w-4 mr-2" />
-                            Download
-                        </Button>
-                    </a>
                 </DialogHeader>
                 <div className="flex-grow overflow-auto">
                     <iframe 
