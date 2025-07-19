@@ -9,7 +9,8 @@ import { motion } from "framer-motion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useState } from "react";
 
-const resumeUrl = "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/Vikas_Ravikumar_Karjigi_Resume.pdf";
+const resumePdfUrl = "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/Vikas_Ravikumar_Karjigi_Resume.pdf";
+const resumeUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(resumePdfUrl)}#toolbar=0`;
 
 
 export function Hero() {
@@ -111,11 +112,13 @@ export function Hero() {
                   <ArrowRight className="inline-block w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
             </DialogTrigger>
-            <DialogContent className="p-0 max-w-3xl h-[90vh]">
-                <DialogHeader>
-                    <DialogTitle className="p-4 pb-0">Vikas Ravikumar Karjigi Resume</DialogTitle>
+            <DialogContent className="p-0 max-w-3xl h-[90vh] flex flex-col">
+                <DialogHeader className="p-4 pb-2">
+                    <DialogTitle>Vikas Ravikumar Karjigi Resume</DialogTitle>
                 </DialogHeader>
-                <iframe src={resumeUrl} className="w-full h-full" />
+                <div className="flex-1">
+                  <iframe src={resumeUrl} className="w-full h-full border-0" />
+                </div>
             </DialogContent>
           </Dialog>
 
