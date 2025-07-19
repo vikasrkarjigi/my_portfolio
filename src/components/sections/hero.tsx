@@ -33,6 +33,19 @@ export function Hero() {
     },
   };
 
+  const nameVariants = {
+     hidden: { y: -20, opacity: 0 },
+     visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.7,
+        ease: [0.4, 0.0, 0.2, 1], // Custom cubic-bezier for a smooth fall
+      },
+    },
+  };
+
+
   return (
     <motion.section 
       id="hero" 
@@ -51,13 +64,13 @@ export function Hero() {
           variants={itemVariants}
         >
           <span className="block">Hi, I&apos;m</span>
-          <span 
-            className="block text-primary"
-            style={{ textShadow: '0 0 15px hsl(var(--primary))' }}
+          <motion.span 
+            variants={nameVariants}
+            className="block animated-sparkle-text"
             aria-label={name}
           >
            {name}
-          </span>
+          </motion.span>
         </motion.h1>
         <motion.div 
           className="mt-6 text-2xl font-semibold leading-8 text-foreground/80 h-8"
