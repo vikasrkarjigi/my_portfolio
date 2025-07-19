@@ -38,6 +38,9 @@ export function Header() {
                     </Avatar>
                 </DialogTrigger>
                 <DialogContent className="p-0 w-auto max-w-md bg-transparent border-0">
+                    <DialogHeader>
+                        <DialogTitle className="sr-only">Profile Picture</DialogTitle>
+                    </DialogHeader>
                     <Image src={profileImageUrl} alt="Vikas Ravikumar Karjigi" width={500} height={500} className="rounded-lg object-cover" />
                 </DialogContent>
             </Dialog>
@@ -75,6 +78,9 @@ export function Header() {
                             </Avatar>
                         </DialogTrigger>
                         <DialogContent className="p-0 w-auto max-w-md bg-transparent border-0">
+                            <DialogHeader>
+                                <DialogTitle className="sr-only">Profile Picture</DialogTitle>
+                            </DialogHeader>
                             <Image src={profileImageUrl} alt="Vikas Ravikumar Karjigi" width={500} height={500} className="rounded-lg object-cover" />
                         </DialogContent>
                     </Dialog>
