@@ -20,6 +20,18 @@ export function Hero() {
     },
   };
 
+  const nameVariants = {
+    hidden: { y: -50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.7,
+        ease: "easeOut",
+      },
+    },
+  };
+
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -47,7 +59,7 @@ export function Hero() {
       <div className="text-center">
         <motion.h1 
           className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl font-headline"
-          variants={itemVariants}
+          variants={nameVariants}
         >
           <span className="block">Hi, I&apos;m</span>
           <span className="block text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">Vikas Ravikumar Karjigi</span>
