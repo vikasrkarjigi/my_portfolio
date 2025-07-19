@@ -22,7 +22,8 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ]
 
-const resumeUrl = "https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Vikas_Ravikumar_Karjigi_Resume.pdf";
+const rawResumeUrl = "https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Vikas_Ravikumar_Karjigi_Resume.pdf";
+const resumeUrl = `https://docs.google.com/gview?url=${rawResumeUrl}&embedded=true`;
 const profileImageUrl = "https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Profile%20Photo_1.jpeg";
 
 export function Header() {
@@ -97,7 +98,7 @@ export function Header() {
                         allow="autoplay"
                         title="Vikas Ravikumar Karjigi Resume"
                     >
-                        Your browser does not support iframes. Please <a href={resumeUrl} target="_blank" rel="noopener noreferrer">download the resume</a> to view it.
+                        Your browser does not support iframes. Please <a href={rawResumeUrl} target="_blank" rel="noopener noreferrer">download the resume</a> to view it.
                     </iframe>
                 </div>
             </DialogContent>
