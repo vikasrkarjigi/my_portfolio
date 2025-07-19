@@ -143,9 +143,9 @@ function ProjectCard(project: Project) {
             <Image
               src={project.image}
               alt={`Project image for ${project.title}`}
-              width={600}
-              height={400}
-              className="object-contain w-full h-full transition-transform duration-300"
+              width={1920}
+              height={1080}
+              className="object-cover w-full h-full transition-transform duration-300"
               data-ai-hint={`${project.title} ${project.description}`}
             />
           </div>
