@@ -139,7 +139,7 @@ function ProjectCard(project: Project) {
     <Link href={project.url} target="_blank" rel="noopener noreferrer" className="group">
       <Card className="overflow-hidden transition-transform-shadow duration-300 hover:shadow-glow-accent hover:-translate-y-1 h-full flex flex-col">
         <CardHeader className="p-0">
-          <div className="aspect-video overflow-hidden bg-muted flex items-center justify-center">
+          <div className="aspect-video overflow-hidden flex items-center justify-center">
             <Image
               src={project.image}
               alt={`Project image for ${project.title}`}
