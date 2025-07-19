@@ -50,19 +50,28 @@ const generateDescriptionPrompt = ai.definePrompt({
     Return only the JSON object.`,
 });
 
+type CategorizedRepo = GithubRepository & { category: 'dataScientist' | 'dataEngineer' | 'dataAnalyst' };
 
-function categorizeRepository(repo: GithubRepository): 'dataScientist' | 'dataEngineer' | 'dataAnalyst' {
-    const topics = repo.topics.map(t => t.toLowerCase());
-    if (topics.includes('ml-engineer') || topics.includes('data-science')) {
-      return 'dataScientist';
+function categorizeAndFilterRepositories(repos: GithubRepository[]): CategorizedRepo[] {
+    const categorizedRepos: CategorizedRepo[] = [];
+    
+    for (const repo of repos) {
+        const topics = repo.topics.map(t => t.toLowerCase());
+        let category: CategorizedRepo['category'] | null = null;
+        
+        if (topics.includes('ml-engineer') || topics.includes('data-science')) {
+          category = 'dataScientist';
+        } else if (topics.includes('data-engineer')) {
+          category = 'dataEngineer';
+        } else if (topics.includes('data-analyst')) {
+          category = 'dataAnalyst';
+        }
+
+        if (category) {
+            categorizedRepos.push({ ...repo, category });
+        }
     }
-    if (topics.includes('data-engineer')) {
-      return 'dataEngineer';
-    }
-    if (topics.includes('data-analyst')) {
-      return 'dataAnalyst';
-    }
-    return 'dataScientist'; // Fallback category
+    return categorizedRepos;
 }
 
 function formatRepositoryName(name: string): string {
@@ -72,7 +81,6 @@ function formatRepositoryName(name: string): string {
     .replace(/\b\w/g, char => char.toUpperCase());
 }
 
-
 const getGithubProjectsFlow = ai.defineFlow(
   {
     name: 'getGithubProjectsFlow',
@@ -81,15 +89,16 @@ const getGithubProjectsFlow = ai.defineFlow(
     tools: [getPublicRepositories],
   },
   async (input) => {
-    const repos = await getPublicRepositories(input);
+    const allRepos = await getPublicRepositories(input);
 
-    const filteredRepos = repos.filter(repo => repo.name !== input.username && !repo.fork).slice(0, 9);
+    const userRepos = allRepos.filter(repo => repo.name !== input.username && !repo.fork);
+    
+    const filteredRepos = categorizeAndFilterRepositories(userRepos);
 
     if (filteredRepos.length === 0) {
       return { projects: [] };
     }
     
-    // Process repos to get descriptions and tools
     const processedProjectsPromises = filteredRepos.map(async (repo) => {
         let description = repo.description || 'No description provided.';
         let tools = repo.language ? [repo.language] : ['Code'];
@@ -104,14 +113,12 @@ const getGithubProjectsFlow = ai.defineFlow(
             console.error(`AI description generation failed for repo ${repo.name}. Using default.`, e);
         }
         
-        const category = categorizeRepository(repo);
-        
         return {
             title: formatRepositoryName(repo.name),
             description: description,
             tools: tools,
             url: repo.html_url,
-            category,
+            category: repo.category,
             image: '', // will be filled later
         };
     });
