@@ -83,7 +83,7 @@ export function Projects() {
     }
 
     const isExpanded = expandedCategories.has(category);
-    const visibleProjects = isExpanded ? projectList : projectList.slice(0, 6);
+    const visibleProjects = isExpanded ? projectList : projectList.slice(0, 3);
 
     return (
       <>
@@ -92,7 +92,7 @@ export function Projects() {
             <ProjectCard key={index} {...project} />
           ))}
         </div>
-        {projectList.length > 6 && (
+        {projectList.length > 3 && (
           <div className="mt-8 text-center">
             <Button onClick={() => toggleCategory(category)} variant="secondary">
               {isExpanded ? 'Show Less' : 'Show More'}
