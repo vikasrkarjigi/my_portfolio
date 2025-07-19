@@ -22,7 +22,7 @@ export const getPublicRepositories = ai.defineTool(
   },
   async (input) => {
     try {
-      const response = await fetch(`https://api.github.com/users/${input.username}/repos?sort=pushed&per_page=20`, {
+      const response = await fetch(`https://api.github.com/users/${input.username}/repos?sort=pushed&per_page=100`, {
         headers: {
             // Including the API version header is a good practice.
             'X-GitHub-Api-Version': '2022-11-28',
@@ -43,6 +43,54 @@ export const getPublicRepositories = ai.defineTool(
       // In case of an error, return an empty array or re-throw.
       // Returning an empty array allows the flow to continue gracefully.
       return [];
+    }
+  }
+);
+
+export const getPortfolioImageFromRepo = ai.defineTool(
+  {
+    name: 'getPortfolioImageFromRepo',
+    description: 'Finds the first image in the portfolio_image directory of a GitHub repository.',
+    inputSchema: z.object({
+      username: z.string().describe('The GitHub username.'),
+      repoName: z.string().describe('The name of the repository.'),
+    }),
+    outputSchema: z.string().url().nullable(),
+  },
+  async ({ username, repoName }) => {
+    const commonImageExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg'];
+    try {
+      const response = await fetch(`https://api.github.com/repos/${username}/${repoName}/contents/portfolio_image`, {
+        headers: {
+            'X-GitHub-Api-Version': '2022-11-28',
+            'User-Agent': 'Firebase-Studio-Portfolio-App'
+        }
+      });
+      
+      if (response.status === 404) {
+        // The folder doesn't exist, which is not an error in our case.
+        return null;
+      }
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch repo contents: ${response.statusText}`);
+      }
+
+      const contents = await response.json();
+      
+      if (!Array.isArray(contents)) {
+          return null;
+      }
+      
+      const imageFile = contents.find(file => 
+        file.type === 'file' && commonImageExtensions.some(ext => file.name.toLowerCase().endsWith(ext))
+      );
+
+      return imageFile ? imageFile.download_url : null;
+
+    } catch (error) {
+      console.error(`Error fetching portfolio image from repo ${repoName}:`, error);
+      return null;
     }
   }
 );

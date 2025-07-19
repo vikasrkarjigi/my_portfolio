@@ -9,7 +9,7 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { getPublicRepositories, type GithubRepository } from '@/services/github';
+import { getPublicRepositories, getPortfolioImageFromRepo, type GithubRepository } from '@/services/github';
 import { z } from 'genkit';
 import { generateProjectImage } from './generate-project-image-flow';
 
@@ -22,7 +22,7 @@ const ProjectSchema = z.object({
   title: z.string().describe('The name of the repository.'),
   description: z.string().describe("A concise, one-sentence description of the project, suitable for a portfolio."),
   tools: z.array(z.string()).describe('An array of languages or main technologies used in the project (e.g., Python, Jupyter, Pandas).'),
-  image: z.string().describe('A generated image URL (data URI) for the project.'),
+  image: z.string().describe('A generated image URL (data URI) or a URL from the repository for the project.'),
   category: z.enum(['dataScientist', 'dataEngineer', 'dataAnalyst', 'other']).describe("The category of the project based on its content."),
   url: z.string().describe('The URL of the GitHub repository.'),
 });
@@ -86,12 +86,12 @@ const getGithubProjectsFlow = ai.defineFlow(
     name: 'getGithubProjectsFlow',
     inputSchema: GetGithubProjectsInputSchema,
     outputSchema: GetGithubProjectsOutputSchema,
-    tools: [getPublicRepositories],
+    tools: [getPublicRepositories, getPortfolioImageFromRepo],
   },
   async (input) => {
     const allRepos = await getPublicRepositories(input);
 
-    const userRepos = allRepos.filter(repo => repo.name !== input.username);
+    const userRepos = allRepos.filter(repo => repo.name !== input.username && !repo.fork);
     
     const filteredRepos = categorizeAndFilterRepositories(userRepos);
 
@@ -119,6 +119,9 @@ const getGithubProjectsFlow = ai.defineFlow(
             tools: tools,
             url: repo.html_url,
             category: repo.category,
+            // Pass repo details for image fetching
+            repoName: repo.name, 
+            username: input.username,
             image: '', // will be filled later
         };
     });
@@ -130,9 +133,15 @@ const getGithubProjectsFlow = ai.defineFlow(
     }
 
     // Generate images in parallel
-    const imagePromises = processedProjects.map(p => 
-        generateProjectImage({ title: p.title, description: p.description })
-    );
+    const imagePromises = processedProjects.map(async (p) => {
+        // Try to get image from repo first
+        const imageUrl = await getPortfolioImageFromRepo({ username: p.username, repoName: p.repoName });
+        if (imageUrl) {
+            return imageUrl;
+        }
+        // Fallback to generating an image
+        return generateProjectImage({ title: p.title, description: p.description });
+    });
     const generatedImages = await Promise.all(imagePromises);
 
     // Combine projects with generated images
