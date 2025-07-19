@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useState } from "react";
 
-const resumeUrl = "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/public/Vikas_Ravikumar_Karjigi_Resume.pdf";
+const resumeUrl = "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/Vikas_Ravikumar_Karjigi_Resume.pdf";
 
 
 export function Hero() {
