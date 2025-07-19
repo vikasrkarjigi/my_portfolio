@@ -22,7 +22,7 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ]
 
-const resumeUrl = "https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Vikas%20Karjigi_Data%20Scientist.pdf";
+const resumeUrl = "https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Vikas_Ravikumar_Karjigi_Resume.pdf";
 const profileImageUrl = "https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Profile%20Photo_1.jpeg";
 
 export function Header() {
