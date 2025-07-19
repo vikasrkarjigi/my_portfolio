@@ -244,40 +244,7 @@ const initialTechStacks: TechStack[] = [
 
 export function TechStacks() {
   const [techStacks, setTechStacks] = useState<TechStack[]>(initialTechStacks)
-  const [resumeText, setResumeText] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const { toast } = useToast()
-
-  const handleExtract = async () => {
-    if (!resumeText.trim()) {
-      toast({ title: 'Error', description: 'Please paste your resume text.', variant: 'destructive' })
-      return
-    }
-    setIsLoading(true);
-    const result = await getTechStacksFromResume(resumeText);
-    
-    if (result.success && result.data?.techStacks) {
-      const newTechStacks: TechStack[] = result.data.techStacks.map(stack => ({
-        category: stack.category,
-        Icon: initialTechStacks.find(s => s.category.toLowerCase().includes(stack.category.split(" ")[0].toLowerCase()))?.Icon || Cpu,
-        technologies: stack.technologies.map(techName => {
-          const flatInitial = initialTechStacks.flatMap(s => s.technologies);
-          const foundTech = flatInitial.find(t => t.name.toLowerCase() === techName.toLowerCase());
-          return {
-            name: techName,
-            Icon: foundTech?.Icon || Cpu
-          }
-        })
-      }));
-      setTechStacks(newTechStacks);
-      toast({ title: 'Success', description: 'Tech stacks extracted and updated successfully!' });
-      setIsDialogOpen(false);
-    } else {
-      toast({ title: 'Error', description: result.error || 'An unknown error occurred.', variant: 'destructive' });
-    }
-    setIsLoading(false);
-  }
 
   return (
     <section id="tech-stacks" className="py-24 sm:py-32">
@@ -286,36 +253,6 @@ export function TechStacks() {
           <div className="text-center">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">My Tech Arsenal</h2>
               <p className="mt-4 text-lg text-primary">From code to cloud — here’s what powers my work.</p>
-              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button className="mt-6">
-                    <Lightbulb className="mr-2 h-4 w-4" />
-                    Extract from Resume
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[625px]">
-                  <DialogHeader>
-                    <DialogTitle>Extract Tech Stacks with AI</DialogTitle>
-                    <DialogDescription>
-                      Paste the text from your resume below. Our AI will analyze it and automatically populate the tech stacks section.
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="grid gap-4 py-4">
-                    <Textarea
-                      placeholder="Paste your resume text here..."
-                      className="h-64"
-                      value={resumeText}
-                      onChange={(e) => setResumeText(e.target.value)}
-                      disabled={isLoading}
-                    />
-                  </div>
-                  <DialogFooter>
-                    <Button type="submit" onClick={handleExtract} disabled={isLoading}>
-                      {isLoading ? 'Extracting...' : 'Extract Tech Stacks'}
-                    </Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
           </div>
 
           <div className="mt-16 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
