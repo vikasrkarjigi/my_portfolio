@@ -2,7 +2,7 @@
 
 'use client'
 
-import { Github, Linkedin, Mail, FileText, Download } from 'lucide-react'
+import { Github, Linkedin, Mail } from 'lucide-react'
 import Link from 'next/link'
 import { ThemeToggle } from './theme-toggle'
 import { Button } from './ui/button'
@@ -23,7 +23,6 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ]
 
-const rawResumeUrl = "https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Vikas_Ravikumar_Karjigi_Resume.pdf";
 const profileImageUrl = "https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Profile%20Photo_1.jpeg";
 
 export function Header() {
@@ -80,29 +79,6 @@ export function Header() {
               <Mail className="h-5 w-5" />
             </a>
           </Button>
-
-          <Dialog>
-            <DialogTrigger asChild>
-                <Button variant="ghost" size="icon" aria-label="View Resume">
-                    <FileText className="h-5 w-5" />
-                </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-4xl h-[90vh] p-0 flex flex-col">
-                <DialogHeader className="p-4 border-b flex-shrink-0">
-                    <DialogTitle>Resume - Vikas Ravikumar Karjigi</DialogTitle>
-                </DialogHeader>
-                <div className="flex-grow overflow-auto">
-                    <iframe 
-                        src={`https://docs.google.com/gview?url=${rawResumeUrl}&embedded=true`}
-                        className="w-full h-full" 
-                        allow="autoplay"
-                        title="Vikas Ravikumar Karjigi Resume"
-                    >
-                        Your browser does not support iframes. Please <a href={rawResumeUrl} target="_blank" rel="noopener noreferrer">download the resume</a> to view it.
-                    </iframe>
-                </div>
-            </DialogContent>
-          </Dialog>
 
           <ThemeToggle />
 
