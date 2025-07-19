@@ -29,7 +29,7 @@ export function AboutMe() {
         </div>
 
       <div className="container mx-auto max-w-4xl text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">A Reinforcement Loop</h2>
+        <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">Reinforcement Loop</h2>
         <p className="mt-4 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">Policy optimized by checkmates and power chords.</p>
         <div className="mt-8 space-y-6 text-lg text-foreground/80 text-left">
           <p>
