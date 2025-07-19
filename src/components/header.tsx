@@ -45,7 +45,7 @@ export function Header() {
                 </DialogContent>
             </Dialog>
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="hidden font-bold sm:inline-block ml-2">Karjigi Portfolio</span>
+            <span className="hidden font-bold sm:inline-block ml-2">Karjigi</span>
           </Link>
           <nav className="flex items-center gap-6 text-sm">
             {navLinks.map((link) => (
@@ -85,7 +85,7 @@ export function Header() {
                         </DialogContent>
                     </Dialog>
                     <Link href="/" className="flex items-center space-x-2">
-                        <span className="font-bold sm:inline-block">Karjigi Portfolio</span>
+                        <span className="font-bold sm:inline-block">Karjigi</span>
                     </Link>
                 </div>
                 <nav className="flex flex-col items-start gap-4 text-sm">
