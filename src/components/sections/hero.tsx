@@ -66,10 +66,11 @@ export function Hero() {
           <span className="block">Hi, I&apos;m</span>
           <motion.span 
             variants={nameVariants}
-            className="block animated-sparkle-text"
-            aria-label={name}
+            className="block text-primary"
           >
-           {name}
+            <span className="animated-sparkle-text" aria-label={name}>
+              {name}
+            </span>
           </motion.span>
         </motion.h1>
         <motion.div 
