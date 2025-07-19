@@ -94,7 +94,7 @@ export function Projects() {
         </div>
         {projectList.length > 3 && (
           <div className="mt-8 text-center">
-            <Button onClick={() => toggleCategory(category)} variant="secondary">
+            <Button onClick={() => toggleCategory(category)}>
               {isExpanded ? 'Show Less' : 'Show More'}
             </Button>
           </div>
