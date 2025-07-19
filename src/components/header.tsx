@@ -99,7 +99,7 @@ export function Header() {
                 </DialogHeader>
                 <div className="flex-grow overflow-auto">
                     <iframe 
-                        src={rawResumeUrl} 
+                        src={`https://docs.google.com/gview?url=${rawResumeUrl}&embedded=true`}
                         className="w-full h-full" 
                         allow="autoplay"
                         title="Vikas Ravikumar Karjigi Resume"
