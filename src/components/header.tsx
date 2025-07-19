@@ -2,7 +2,7 @@
 
 'use client'
 
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { Github, Linkedin, Mail, FileText } from 'lucide-react'
 import Link from 'next/link'
 import { ThemeToggle } from './theme-toggle'
 import { Button } from './ui/button'
@@ -23,7 +23,9 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ]
 
-const profileImageUrl = "https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Profile%20Photo_1.jpeg";
+const profileImageUrl = "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/public/Vikas_Ravikumar_Karjigi_Resume-Photo.jpeg";
+const resumeUrl = "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/public/Vikas_Ravikumar_Karjigi_Resume.pdf";
+
 
 export function Header() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -40,8 +42,8 @@ export function Header() {
                     </Avatar>
                 </DialogTrigger>
                 <DialogContent className="p-0 w-auto max-w-md bg-transparent border-0">
-                    <DialogHeader>
-                        <DialogTitle className="sr-only">Profile Picture</DialogTitle>
+                    <DialogHeader className="sr-only">
+                        <DialogTitle>Profile Picture</DialogTitle>
                     </DialogHeader>
                     <Image src={profileImageUrl} alt="Vikas Ravikumar Karjigi" width={500} height={500} className="rounded-lg object-cover" />
                 </DialogContent>
@@ -78,6 +80,11 @@ export function Header() {
             <a href="mailto:vikasravikarjigi26@gmail.com" aria-label="Email">
               <Mail className="h-5 w-5" />
             </a>
+          </Button>
+          <Button variant="ghost" size="icon" asChild>
+              <a href={resumeUrl} target="_blank" rel="noopener noreferrer" aria-label="Resume">
+                <FileText className="h-5 w-5" />
+              </a>
           </Button>
 
           <ThemeToggle />
