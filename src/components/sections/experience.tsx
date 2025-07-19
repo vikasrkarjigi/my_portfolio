@@ -60,7 +60,7 @@ export function Experience() {
     <section id="experience" className="bg-muted/40 py-24 sm:py-32">
       <div className="container mx-auto">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">The Journey So Far</h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">Career Highlights</h2>
           <p className="mt-2 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">A track record of turning data-driven insights into measurable results.</p>
         </div>
         <div className="relative mt-12 grid gap-8 before:absolute before:inset-0 before:left-8 before:w-px before:bg-border md:before:left-1/2 md:before:-translate-x-1/2">
