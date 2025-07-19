@@ -70,7 +70,8 @@ export function Projects() {
   const renderProjectList = (projectList: Project[] | undefined, category: Category) => {
     if (isLoading) {
       return (
-        <div className="grid gap-8 md:grid-cols-2 mt-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mt-8">
+          <ProjectCardSkeleton />
           <ProjectCardSkeleton />
           <ProjectCardSkeleton />
         </div>
@@ -82,16 +83,16 @@ export function Projects() {
     }
 
     const isExpanded = expandedCategories.has(category);
-    const visibleProjects = isExpanded ? projectList : projectList.slice(0, 4);
+    const visibleProjects = isExpanded ? projectList : projectList.slice(0, 6);
 
     return (
       <>
-        <div className="grid gap-8 md:grid-cols-2 mt-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mt-8">
           {visibleProjects.map((project, index) => (
             <ProjectCard key={index} {...project} />
           ))}
         </div>
-        {projectList.length > 4 && (
+        {projectList.length > 6 && (
           <div className="mt-8 text-center">
             <Button onClick={() => toggleCategory(category)} variant="secondary">
               {isExpanded ? 'Show Less' : 'Show More'}
