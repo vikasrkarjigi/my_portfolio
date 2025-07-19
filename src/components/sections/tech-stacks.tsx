@@ -246,7 +246,7 @@ export function TechStacks() {
         <div className="container mx-auto">
           <div className="text-center">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">My Tech Arsenal</h2>
-              <p className="mt-2 text-lg text-primary">From code to cloud — here’s what powers my work.</p>
+              <p className="mt-2 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">From code to cloud — here’s what powers my work.</p>
           </div>
 
           <div className="mt-16 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

@@ -61,7 +61,7 @@ export function Experience() {
       <div className="container mx-auto">
         <div className="text-center">
           <h2 className="text-center text-3xl font-bold tracking-tight sm:text-4xl font-headline">Work Experience</h2>
-          <p className="mt-2 text-lg text-primary">My professional journey and key contributions.</p>
+          <p className="mt-2 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">My professional journey and key contributions.</p>
         </div>
         <div className="relative mt-12 grid gap-8 before:absolute before:inset-0 before:left-8 before:w-px before:bg-border md:before:left-1/2 md:before:-translate-x-1/2">
           {experiences.map((exp, index) => (
