@@ -23,8 +23,8 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ]
 
-const profileImageUrl = "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/public/Vikas_Ravikumar_Karjigi_Resume-Photo.jpeg";
-const resumeUrl = "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/public/Vikas_Ravikumar_Karjigi_Resume.pdf";
+const profileImageUrl = "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/profile_photo.jpeg";
+const resumeUrl = "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/Vikas_Ravikumar_Karjigi_Resume.pdf";
 
 
 export function Header() {
