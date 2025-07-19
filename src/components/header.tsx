@@ -1,12 +1,14 @@
+
 'use client'
 
-import { Github, Linkedin, Mail, FileText, Code2, Download } from 'lucide-react'
+import { Github, Linkedin, Mail, FileText, Download } from 'lucide-react'
 import Link from 'next/link'
 import { ThemeToggle } from './theme-toggle'
 import { Button } from './ui/button'
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 import { Menu } from 'lucide-react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog'
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
 const navLinks = [
   { href: '#hero', label: 'Home' },
@@ -28,7 +30,10 @@ export function Header() {
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <Code2 className="h-6 w-6 text-primary" />
+            <Avatar className="h-8 w-8">
+              <AvatarImage src="https://placehold.co/40x40.png" alt="Vikas Ravikumar Karjigi" data-ai-hint="profile photo" />
+              <AvatarFallback>VK</AvatarFallback>
+            </Avatar>
             <span className="hidden font-bold sm:inline-block">Karjigi Portfolio</span>
           </Link>
           <nav className="flex items-center gap-6 text-sm">
@@ -54,7 +59,10 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="left">
                 <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
-                    <Code2 className="h-6 w-6 text-primary" />
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src="https://placehold.co/40x40.png" alt="Vikas Ravikumar Karjigi" data-ai-hint="profile photo" />
+                      <AvatarFallback>VK</AvatarFallback>
+                    </Avatar>
                     <span className="font-bold sm:inline-block">Karjigi Portfolio</span>
                 </Link>
                 <nav className="flex flex-col items-start gap-4 text-sm">
