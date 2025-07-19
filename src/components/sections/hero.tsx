@@ -15,7 +15,7 @@ export function Hero() {
       <div className="text-center">
         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl font-headline">
           <span className="block">Hi, I&apos;m</span>
-          <span className="block text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">Vikas Ravikumar Karjigi</span>
+          <span className="block text-primary transition-all duration-300 hover:shadow-glow-primary rounded-lg px-2">Vikas Ravikumar Karjigi</span>
         </h1>
         <div className="mt-6 text-2xl font-semibold leading-8 text-foreground/80 h-8">
             <AnimatedTextSwitcher phrases={roles} />
