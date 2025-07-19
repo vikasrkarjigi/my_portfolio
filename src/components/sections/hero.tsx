@@ -10,7 +10,6 @@ import { motion } from "framer-motion";
 export function Hero() {
   const roles = ["Data Scientist", "AI/ML Engineer", "Data Engineer", "Data Analyst"];
   const name = "Vikas Ravikumar Karjigi";
-  const nameChars = Array.from(name);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -18,35 +17,10 @@ export function Hero() {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: nameChars.length * 0.05 + 0.5, // Delay other items until name is typed
       },
     },
   };
   
-  const nameContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05,
-      },
-    },
-  }
-
-  const nameLetterVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 200,
-      },
-    },
-  };
-
-
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -77,21 +51,13 @@ export function Hero() {
           variants={itemVariants}
         >
           <span className="block">Hi, I&apos;m</span>
-          <motion.span 
-            className="block text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]"
-            variants={nameContainerVariants}
+          <span 
+            className="block text-primary"
+            style={{ textShadow: '0 0 15px hsl(var(--primary))' }}
             aria-label={name}
           >
-            {nameChars.map((char, index) => (
-              <motion.span
-                key={index}
-                variants={nameLetterVariants}
-                className="inline-block"
-              >
-                {char === ' ' ? '\u00A0' : char}
-              </motion.span>
-            ))}
-          </motion.span>
+           {name}
+          </span>
         </motion.h1>
         <motion.div 
           className="mt-6 text-2xl font-semibold leading-8 text-foreground/80 h-8"
