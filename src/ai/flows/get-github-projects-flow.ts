@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview This file defines a Genkit flow to fetch and categorize GitHub projects.
@@ -64,6 +65,13 @@ function categorizeRepository(repo: GithubRepository): 'dataScientist' | 'dataEn
     return 'other'; // Fallback category
 }
 
+function formatRepositoryName(name: string): string {
+  return name
+    .replace(/-/g, ' ')
+    .replace(/_/g, ' ')
+    .replace(/\b\w/g, char => char.toUpperCase());
+}
+
 
 const getGithubProjectsFlow = ai.defineFlow(
   {
@@ -91,7 +99,7 @@ const getGithubProjectsFlow = ai.defineFlow(
             if (category === 'other') return null; // Skip projects that don't fit categories
 
             return {
-                title: repo.name,
+                title: formatRepositoryName(repo.name),
                 description: output.description,
                 tools: output.tools.length > 0 ? output.tools : (repo.language ? [repo.language] : ['Code']),
                 url: repo.html_url,
