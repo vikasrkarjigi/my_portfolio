@@ -23,19 +23,26 @@ const navLinks = [
 
 const resumeUrl = "https://drive.google.com/file/d/10i0OKDJ_7YfxYNuhYfCGO9-ET2MUziKr/view?usp=sharing";
 const embedResumeUrl = `https://drive.google.com/file/d/10i0OKDJ_7YfxYNuhYfCGO9-ET2MUziKr/preview`;
-
+const profileImageUrl = "https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Profile%20Photo.jpeg";
 
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <div className="mr-4 hidden md:flex">
+            <Dialog>
+                <DialogTrigger asChild>
+                    <Avatar className="h-8 w-8 cursor-pointer">
+                      <AvatarImage src={profileImageUrl} alt="Vikas Ravikumar Karjigi" className="object-cover"/>
+                      <AvatarFallback>VK</AvatarFallback>
+                    </Avatar>
+                </DialogTrigger>
+                <DialogContent className="p-0 w-auto max-w-md bg-transparent border-0">
+                    <Image src={profileImageUrl} alt="Vikas Ravikumar Karjigi" width={500} height={500} className="rounded-lg object-cover" />
+                </DialogContent>
+            </Dialog>
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <Avatar className="h-8 w-8">
-              <AvatarImage src="https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Profile%20Photo.jpeg" alt="Vikas Ravikumar Karjigi" className="object-cover"/>
-              <AvatarFallback>VK</AvatarFallback>
-            </Avatar>
-            <span className="hidden font-bold sm:inline-block">Karjigi Portfolio</span>
+            <span className="hidden font-bold sm:inline-block ml-2">Karjigi Portfolio</span>
           </Link>
           <nav className="flex items-center gap-6 text-sm">
             {navLinks.map((link) => (
@@ -59,13 +66,22 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left">
-                <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
-                    <Avatar className="h-8 w-8">
-                      <AvatarImage src="https://raw.githubusercontent.com/vikasrkarjigi/resumes/main/Profile%20Photo.jpeg" alt="Vikas Ravikumar Karjigi" className="object-cover"/>
-                      <AvatarFallback>VK</AvatarFallback>
-                    </Avatar>
-                    <span className="font-bold sm:inline-block">Karjigi Portfolio</span>
-                </Link>
+                <div className="flex items-center space-x-2 mb-6">
+                    <Dialog>
+                        <DialogTrigger asChild>
+                            <Avatar className="h-8 w-8 cursor-pointer">
+                              <AvatarImage src={profileImageUrl} alt="Vikas Ravikumar Karjigi" className="object-cover"/>
+                              <AvatarFallback>VK</AvatarFallback>
+                            </Avatar>
+                        </DialogTrigger>
+                        <DialogContent className="p-0 w-auto max-w-md bg-transparent border-0">
+                            <Image src={profileImageUrl} alt="Vikas Ravikumar Karjigi" width={500} height={500} className="rounded-lg object-cover" />
+                        </DialogContent>
+                    </Dialog>
+                    <Link href="/" className="flex items-center space-x-2">
+                        <span className="font-bold sm:inline-block">Karjigi Portfolio</span>
+                    </Link>
+                </div>
                 <nav className="flex flex-col items-start gap-4 text-sm">
                     {navLinks.map((link) => (
                     <Link
