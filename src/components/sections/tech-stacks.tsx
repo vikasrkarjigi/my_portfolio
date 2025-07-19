@@ -4,12 +4,6 @@ import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { BrainCircuit, Cloud, Code, Database, GitBranch, Layers, Cpu, Lightbulb, Server, SlidersHorizontal, AreaChart } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
-import { Button } from '../ui/button'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '../ui/dialog'
-import { Textarea } from '../ui/textarea'
-import { useToast } from '@/hooks/use-toast'
-import { getTechStacksFromResume } from '@/app/actions'
-import { Skeleton } from '../ui/skeleton'
 import {
   Tooltip,
   TooltipContent,
@@ -252,7 +246,7 @@ export function TechStacks() {
         <div className="container mx-auto">
           <div className="text-center">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">My Tech Arsenal</h2>
-              <p className="mt-4 text-lg text-primary">From code to cloud — here’s what powers my work.</p>
+              <p className="mt-2 text-lg text-primary">From code to cloud — here’s what powers my work.</p>
           </div>
 
           <div className="mt-16 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
