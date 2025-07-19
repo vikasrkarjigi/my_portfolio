@@ -58,7 +58,7 @@ export function Hero() {
   return (
     <motion.section 
       id="hero" 
-      className="container relative mx-auto py-24 sm:py-32"
+      className="relative flex flex-col items-center justify-center min-h-[calc(100vh-theme(spacing.14))]"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -67,7 +67,7 @@ export function Hero() {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent via-transparent"></div>
         </div>
       
-      <div className="text-center">
+      <div className="container text-center">
         <motion.h1 
           className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl font-headline"
           variants={otherItemsVariants}
