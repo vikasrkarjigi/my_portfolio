@@ -25,7 +25,7 @@ const navLinks = [
 
 const profileImageUrl = "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/profile_photo.jpeg";
 const resumeUrl = "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/Vikas_Ravikumar_Karjigi_Resume.pdf";
-
+const encodedResumeUrl = encodeURIComponent(resumeUrl);
 
 export function Header() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -81,11 +81,26 @@ export function Header() {
               <Mail className="h-5 w-5" />
             </a>
           </Button>
-          <Button variant="ghost" size="icon" asChild>
-              <a href={resumeUrl} target="_blank" rel="noopener noreferrer" aria-label="Resume">
-                <FileText className="h-5 w-5" />
-              </a>
-          </Button>
+          
+          <Dialog>
+            <DialogTrigger asChild>
+                <Button variant="ghost" size="icon" aria-label="Resume">
+                  <FileText className="h-5 w-5" />
+                </Button>
+            </DialogTrigger>
+            <DialogContent className="p-0 w-full max-w-4xl h-[90vh] flex flex-col">
+              <DialogHeader className="p-4 border-b">
+                <DialogTitle>Vikas Ravikumar Karjigi Resume</DialogTitle>
+              </DialogHeader>
+              <div className="flex-1">
+                <iframe
+                  src={`/pdfjs/web/viewer.html?file=${encodedResumeUrl}`}
+                  className="w-full h-full border-0"
+                  title="Vikas Ravikumar Karjigi Resume"
+                />
+              </div>
+            </DialogContent>
+          </Dialog>
 
           <ThemeToggle />
 
