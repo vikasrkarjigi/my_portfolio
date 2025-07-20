@@ -5,13 +5,13 @@ import { useEffect, useState } from 'react'
 import { Button } from './ui/button'
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
     const storedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    const initialTheme = storedTheme || 'dark';
+    const initialTheme = storedTheme || 'light';
     setTheme(initialTheme);
     if(initialTheme === 'dark') {
         document.documentElement.classList.add('dark')
