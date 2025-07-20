@@ -23,7 +23,7 @@ export function Education() {
       <div className="container mx-auto">
         <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">Education</h2>
-            <p className="mt-2 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">My academic background and qualifications.</p>
+            <p className="mt-2 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">Learning never stops, but here’s where it began.</p>
         </div>
         <div className="mt-12 grid gap-8 md:grid-cols-2">
           {educationData.map((edu, index) => (
