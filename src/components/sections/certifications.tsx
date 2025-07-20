@@ -28,7 +28,6 @@ export function Certifications() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        // The array is nested under a "certifications" key in the JSON file
         if (data && Array.isArray(data.certifications)) {
           setCertifications(data.certifications);
         } else {
@@ -37,7 +36,7 @@ export function Certifications() {
         }
       } catch (error) {
         console.error("Failed to fetch certifications:", error);
-        setCertifications([]); // Set to empty array on error
+        setCertifications([]); 
       } finally {
         setIsLoading(false);
       }
@@ -78,7 +77,7 @@ export function Certifications() {
   }
 
   if (certifications.length === 0) {
-    return null; // Don't render the section if there are no certifications
+    return null; 
   }
   
   return (
