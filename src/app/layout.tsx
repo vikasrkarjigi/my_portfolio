@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { Chatbot } from '@/components/chatbot';
 
 export const metadata: Metadata = {
-  title: 'CyberPortfolio',
+  title: 'Vikas Ravikumar Karjigi',
   description: 'A modern, responsive personal portfolio website.',
 };
 
