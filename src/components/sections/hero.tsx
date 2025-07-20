@@ -72,7 +72,7 @@ export function Hero() {
           className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl font-headline"
           variants={otherItemsVariants}
         >
-          <span className="block">Hi, I'apos;m</span>
+          <span className="block">Hi, I am</span>
           <motion.div
             className="animated-sparkle-text"
             aria-label={name}
