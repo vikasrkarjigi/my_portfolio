@@ -3,30 +3,6 @@ import { Award } from "lucide-react"
 import Link from "next/link"
 
 const certificationsData = [
-   {
-    name: "Supervised Machine Learning",
-    issuer: "Project",
-    date: "Issued Apr 2024",
-    link: "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/certifications/20.%20Supervised%20Machine%20Learning.jpg"
-  },
-  {
-    name: "Highlight Reel",
-    issuer: "Project",
-    date: "Issued Mar 2024",
-    link: "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/certifications/12.%20Highlight%20Reel.jpg"
-  },
-  {
-    name: "Integrating LLM Service Using Python",
-    issuer: "Project",
-    date: "Issued Feb 2024",
-    link: "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/certifications/11.%20Integrating%20LLM%20Service%20Using%20Python.jpg"
-  },
-  {
-    name: "Application of Markowitz Portfolio Theory",
-    issuer: "Project",
-    date: "Issued Jan 2024",
-    link: "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/certifications/10.%20Application%20of%20Markowitz%20Portfolio%20Theory.jpg"
-  },
   {
     name: "Certified Kubernetes Application Developer (CKAD)",
     issuer: "The Linux Foundation",
@@ -45,7 +21,7 @@ const certificationsData = [
     date: "Issued Jun 2022",
     link: "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/certifications/AWS%20Certified%20Machine%20Learning%20-%20Specialty.pdf"
   },
-    {
+  {
     name: "AWS Certified Cloud Practitioner",
     issuer: "Amazon Web Services",
     date: "Issued Mar 2022",
