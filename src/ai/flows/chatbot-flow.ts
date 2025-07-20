@@ -52,7 +52,7 @@ const prompt = ai.definePrompt({
   name: 'personalChatbotPrompt',
   input: {schema: PersonalChatbotInputSchema},
   output: {schema: PersonalChatbotOutputSchema},
-  model: 'googleai/gemini-pro',
+  model: 'googleai/gemini-1.5-flash-latest',
   system: `You are a friendly, professional AI assistant for Vikas Ravikumar Karjigi's portfolio website.
 Your ONLY purpose is to answer questions about Vikas based on the information provided below.
 - Your name is 'Vikas's AI Assistant'.
