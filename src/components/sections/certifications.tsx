@@ -57,7 +57,7 @@ export function Certifications() {
         <div className="container mx-auto">
           <div className="text-center">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">Certifications</h2>
-              <p className="mt-2 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">Validating my skills and expertise.</p>
+              <p className="mt-2 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">A commitment to continuous learning and professional growth.</p>
           </div>
           <Card className="mt-12 bg-card/50">
             <CardContent className="p-0">
@@ -91,7 +91,7 @@ export function Certifications() {
       <div className="container mx-auto">
         <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">Certifications</h2>
-            <p className="mt-2 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">Validating my skills and expertise.</p>
+            <p className="mt-2 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">A commitment to continuous learning and professional growth.</p>
         </div>
         <Card className="mt-12 bg-card/50">
           <CardContent className="p-0">
