@@ -90,8 +90,8 @@ export function Certifications() {
         <Card className="mt-12 bg-card/50">
           <CardContent className="p-0">
             <ul className="divide-y divide-border">
-              {certifications.map((cert) => (
-                <li key={cert.credentialID} className="p-6">
+              {certifications.map((cert, index) => (
+                <li key={`${cert.name}-${index}`} className="p-6">
                   <Link href={cert.imageURL} target="_blank" rel="noopener noreferrer" className="group flex items-start">
                     <Award className="h-10 w-10 flex-shrink-0 text-accent mr-4 mt-1" />
                     <div className="flex-grow">
