@@ -93,14 +93,14 @@ export function Certifications() {
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">Certifications</h2>
             <p className="mt-2 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">A commitment to continuous learning and professional growth.</p>
         </div>
-        <Card className="mt-12 bg-card/50">
+        <Card className="mt-12 bg-card/50 p-2 sm:p-4">
           <CardContent className="p-0">
-            <ul className="divide-y divide-border">
+            <ul className="space-y-2">
               {visibleCertifications.map((cert, index) => (
                 <li key={`${cert.title}-${index}`}>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <div className="p-6 cursor-pointer hover:bg-muted/50 transition-colors group flex items-start">
+                      <div className="p-4 rounded-md cursor-pointer bg-card/50 hover:bg-muted/50 transition-colors group flex items-start">
                         <Award className="h-10 w-10 flex-shrink-0 text-accent mr-4 mt-1" />
                         <div className="flex-grow">
                           <p className="font-semibold text-foreground group-hover:text-primary transition-colors">{cert.title}</p>
