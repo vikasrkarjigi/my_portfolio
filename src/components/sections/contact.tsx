@@ -18,8 +18,8 @@ export function Contact() {
             </a>
             <a href="https://www.linkedin.com/in/vikasrkarjigi/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
               <Button size="lg" variant="ghost" className="w-full relative overflow-hidden group">
-                <span className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                <span className="relative z-10 flex items-center">
+                <span className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 dark:group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span className="relative z-10 flex items-center dark:group-hover:text-primary-foreground">
                     <Linkedin className="mr-2 h-5 w-5" /> Connect on LinkedIn
                 </span>
               </Button>
