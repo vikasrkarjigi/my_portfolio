@@ -22,6 +22,7 @@ const jsonUrl = "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfol
 export function Certifications() {
   const [certifications, setCertifications] = useState<Certification[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     const fetchCertifications = async () => {
@@ -48,6 +49,8 @@ export function Certifications() {
     fetchCertifications();
   }, []);
 
+  const visibleCertifications = isExpanded ? certifications : certifications.slice(0, 3);
+
   if (isLoading) {
     return (
       <section id="certifications" className="bg-muted/40 py-24 sm:py-32">
@@ -59,7 +62,7 @@ export function Certifications() {
           <Card className="mt-12 bg-card/50">
             <CardContent className="p-0">
               <ul className="divide-y divide-border">
-                {Array.from({ length: 4 }).map((_, index) => (
+                {Array.from({ length: 3 }).map((_, index) => (
                   <li key={index} className="p-6">
                     <div className="flex items-start">
                       <Skeleton className="h-10 w-10 flex-shrink-0 mr-4 mt-1" />
@@ -93,7 +96,7 @@ export function Certifications() {
         <Card className="mt-12 bg-card/50">
           <CardContent className="p-0">
             <ul className="divide-y divide-border">
-              {certifications.map((cert, index) => (
+              {visibleCertifications.map((cert, index) => (
                 <li key={`${cert.title}-${index}`}>
                   <Dialog>
                     <DialogTrigger asChild>
@@ -132,6 +135,13 @@ export function Certifications() {
             </ul>
           </CardContent>
         </Card>
+        {certifications.length > 3 && (
+          <div className="mt-8 text-center">
+            <Button onClick={() => setIsExpanded(!isExpanded)}>
+              {isExpanded ? 'Show Less' : 'Show More'}
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   )
