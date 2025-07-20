@@ -1,67 +1,82 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
+'use client'
+
+import { Card, CardContent } from "@/components/ui/card"
 import { Award } from "lucide-react"
 import Link from "next/link"
+import React, { useEffect, useState } from "react"
+import { Skeleton } from "../ui/skeleton"
 
-const certificationsData = [
-  {
-    name: "Certified Kubernetes Application Developer (CKAD)",
-    issuer: "The Linux Foundation",
-    date: "Issued Nov 2024",
-    link: "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/certifications/01_CKAD_certificate.pdf",
-  },
-  {
-    name: "Meta Database Engineer Professional Certificate",
-    issuer: "Meta",
-    date: "Issued Oct 2024",
-    link: "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/certifications/02_Meta_Database_Engineer_Professional_Certificate.pdf",
-  },
-  {
-    name: "AWS Certified Machine Learning - Specialty",
-    issuer: "Amazon Web Services (AWS)",
-    date: "Issued Sep 2024",
-    link: "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/certifications/03_AWS_Certified_Machine_Learning_Specialty_certificate.pdf",
-  },
-  {
-    name: "AWS Certified Cloud Practitioner",
-    issuer: "Amazon Web Services (AWS)",
-    date: "Issued Aug 2024",
-    link: "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/certifications/04_AWS_Certified_Cloud_Practitioner_certificate.pdf",
-  },
-  {
-    name: "TensorFlow Developer Certificate",
-    issuer: "Google",
-    date: "Issued Jul 2024",
-    link: "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/certifications/05_TensorFlow_Developer_Certificate.pdf",
-  },
-  {
-    name: "Meta Version Control",
-    issuer: "Meta",
-    date: "Issued Jun 2024",
-    link: "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/certifications/06_Meta_Version_Control_certificate.pdf",
-  },
-  {
-    name: "Google Cloud Digital Leader",
-    issuer: "Google",
-    date: "Issued May 2024",
-    link: "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/certifications/07_Google_Cloud_Digital_Leader_Certificate.pdf",
-  },
-  {
-    name: "AWS Academy Graduate - AWS Academy Cloud Foundations",
-    issuer: "Amazon Web Services (AWS)",
-    date: "Issued Apr 2024",
-    link: "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/certifications/08_AWS_Academy_Graduate_AWS_Academy_Cloud_Foundations.pdf",
-  },
-  {
-    name: "Introduction to Cybersecurity",
-    issuer: "Cisco",
-    date: "Issued Mar 2024",
-    link: "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/certifications/09_Introduction_to_Cybersecurity_Cisco.pdf",
-  },
-];
+type Certification = {
+  name: string
+  issuer: string
+  date: string
+  imageURL: string
+  credentialID: string
+}
 
+const jsonUrl = "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/certifications/certifications.json";
 
 export function Certifications() {
-  if (certificationsData.length === 0) {
+  const [certifications, setCertifications] = useState<Certification[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchCertifications = async () => {
+      try {
+        const response = await fetch(jsonUrl);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        if (data && Array.isArray(data.certifications)) {
+          setCertifications(data.certifications);
+        } else {
+          console.error("Fetched data is not in the expected format.");
+          setCertifications([]);
+        }
+      } catch (error) {
+        console.error("Failed to fetch certifications:", error);
+        setCertifications([]); // Set to empty array on error
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCertifications();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section id="certifications" className="bg-muted/40 py-24 sm:py-32">
+        <div className="container mx-auto">
+          <div className="text-center">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">Licenses & Certifications</h2>
+              <p className="mt-2 text-lg text-primary transition-all duration-300 hover:[text-shadow:0_0_15px_hsl(var(--primary))]">Validating my skills and expertise.</p>
+          </div>
+          <Card className="mt-12 bg-card/50">
+            <CardContent className="p-0">
+              <ul className="divide-y divide-border">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <li key={index} className="p-6">
+                    <div className="flex items-start">
+                      <Skeleton className="h-10 w-10 flex-shrink-0 mr-4 mt-1" />
+                      <div className="flex-grow space-y-2">
+                        <Skeleton className="h-5 w-3/4" />
+                        <Skeleton className="h-4 w-1/2" />
+                        <Skeleton className="h-4 w-1/3" />
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+    )
+  }
+
+  if (certifications.length === 0) {
     return null;
   }
   
@@ -75,9 +90,9 @@ export function Certifications() {
         <Card className="mt-12 bg-card/50">
           <CardContent className="p-0">
             <ul className="divide-y divide-border">
-              {certificationsData.map((cert, index) => (
-                <li key={index} className="p-6">
-                  <Link href={cert.link} target="_blank" rel="noopener noreferrer" className="group flex items-start">
+              {certifications.map((cert) => (
+                <li key={cert.credentialID} className="p-6">
+                  <Link href={cert.imageURL} target="_blank" rel="noopener noreferrer" className="group flex items-start">
                     <Award className="h-10 w-10 flex-shrink-0 text-accent mr-4 mt-1" />
                     <div className="flex-grow">
                       <p className="font-semibold text-foreground group-hover:text-primary transition-colors">{cert.name}</p>
