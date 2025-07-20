@@ -151,9 +151,9 @@ function ProjectCard(project: Project) {
           </div>
         </CardHeader>
         <CardContent className="p-6 flex flex-col flex-grow">
-          <div className="flex justify-between items-start mb-2">
+          <div className="flex justify-between items-start mb-2 gap-2">
             <CardTitle className="font-headline group-hover:text-primary transition-colors">{project.title}</CardTitle>
-            <Github className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+            <Github className="w-5 h-5 flex-shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
           </div>
           <p className="text-sm text-muted-foreground mb-4 flex-grow">{project.description}</p>
           <div className="flex flex-wrap gap-2 mt-auto">
