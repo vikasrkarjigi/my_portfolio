@@ -28,6 +28,7 @@ export function Certifications() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
+        // The array is nested under a "certifications" key in the JSON file
         if (data && Array.isArray(data.certifications)) {
           setCertifications(data.certifications);
         } else {
@@ -77,7 +78,7 @@ export function Certifications() {
   }
 
   if (certifications.length === 0) {
-    return null;
+    return null; // Don't render the section if there are no certifications
   }
   
   return (
@@ -91,7 +92,7 @@ export function Certifications() {
           <CardContent className="p-0">
             <ul className="divide-y divide-border">
               {certifications.map((cert, index) => (
-                <li key={`${cert.name}-${index}`} className="p-6">
+                <li key={`${cert.credentialID}-${index}`} className="p-6">
                   <Link href={cert.imageURL} target="_blank" rel="noopener noreferrer" className="group flex items-start">
                     <Award className="h-10 w-10 flex-shrink-0 text-accent mr-4 mt-1" />
                     <div className="flex-grow">
