@@ -94,7 +94,7 @@ export function Header() {
               </DialogHeader>
               <div className="flex-1">
                 <iframe
-                  src={`/pdfjs/web/viewer.html?file=${encodedResumeUrl}`}
+                  src={`https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodedResumeUrl}#toolbar=0&navpanes=0`}
                   className="w-full h-full border-0"
                   title="Vikas Ravikumar Karjigi Resume"
                 />
