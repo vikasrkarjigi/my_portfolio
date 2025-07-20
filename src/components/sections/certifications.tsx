@@ -1,10 +1,12 @@
+
 'use client'
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Award } from "lucide-react"
-import Link from "next/link"
 import React, { useEffect, useState } from "react"
 import { Skeleton } from "../ui/skeleton"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import Image from "next/image"
 
 type Certification = {
   title: string
@@ -91,15 +93,31 @@ export function Certifications() {
           <CardContent className="p-0">
             <ul className="divide-y divide-border">
               {certifications.map((cert, index) => (
-                <li key={`${cert.title}-${index}`} className="p-6">
-                  <Link href={cert.imageURL} target="_blank" rel="noopener noreferrer" className="group flex items-start">
-                    <Award className="h-10 w-10 flex-shrink-0 text-accent mr-4 mt-1" />
-                    <div className="flex-grow">
-                      <p className="font-semibold text-foreground group-hover:text-primary transition-colors">{cert.title}</p>
-                      <p className="text-sm text-muted-foreground">{cert.issuer}</p>
-                      <p className="text-sm text-muted-foreground">Issued {cert.issueDate}</p>
-                    </div>
-                  </Link>
+                <li key={`${cert.title}-${index}`}>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <div className="p-6 cursor-pointer hover:bg-muted/50 transition-colors group flex items-start">
+                        <Award className="h-10 w-10 flex-shrink-0 text-accent mr-4 mt-1" />
+                        <div className="flex-grow">
+                          <p className="font-semibold text-foreground group-hover:text-primary transition-colors">{cert.title}</p>
+                          <p className="text-sm text-muted-foreground">{cert.issuer}</p>
+                          <p className="text-sm text-muted-foreground">Issued {cert.issueDate}</p>
+                        </div>
+                      </div>
+                    </DialogTrigger>
+                    <DialogContent className="p-0 max-w-4xl h-auto bg-transparent border-0">
+                       <DialogHeader className="sr-only">
+                         <DialogTitle>{cert.title}</DialogTitle>
+                       </DialogHeader>
+                       <Image
+                        src={cert.imageURL}
+                        alt={`Certificate for ${cert.title}`}
+                        width={1200}
+                        height={800}
+                        className="rounded-lg object-contain w-full h-full"
+                      />
+                    </DialogContent>
+                  </Dialog>
                 </li>
               ))}
             </ul>
