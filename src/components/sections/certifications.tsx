@@ -2,11 +2,12 @@
 'use client'
 
 import { Card, CardContent } from "@/components/ui/card"
-import { Award } from "lucide-react"
+import { Award, ExternalLink } from "lucide-react"
 import React, { useEffect, useState } from "react"
 import { Skeleton } from "../ui/skeleton"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import Image from "next/image"
+import { Button } from "../ui/button"
 
 type Certification = {
   title: string
@@ -103,6 +104,14 @@ export function Certifications() {
                           <p className="text-sm text-muted-foreground">{cert.issuer}</p>
                           <p className="text-sm text-muted-foreground">Issued {cert.issueDate}</p>
                         </div>
+                         {cert.credentialURL && (
+                            <a href={cert.credentialURL} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="ml-4 self-center">
+                                <Button variant="ghost" size="sm">
+                                    View Credential
+                                    <ExternalLink className="ml-2 h-4 w-4" />
+                                </Button>
+                            </a>
+                        )}
                       </div>
                     </DialogTrigger>
                     <DialogContent className="p-0 max-w-4xl h-auto bg-transparent border-0">
