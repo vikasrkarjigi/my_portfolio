@@ -1,0 +1,48 @@
+/* Hide unwanted toolbar buttons */
+#sidebarToggle,
+#viewFind,
+#previous,
+#next,
+#presentationMode,
+#openFile,
+#viewBookmark,
+#secondaryToolbarToggle,
+#scaleSelectContainer {
+    display: none !important;
+}
+
+/* Hide the entire secondary toolbar (Tools menu) */
+#secondaryToolbar {
+    display: none !important;
+}
+
+/* Hide the find bar */
+#findbar {
+    display: none !important;
+}
+
+/* Hide the sidebar container */
+#sidebarContainer {
+    display: none !important;
+}
+
+/* Adjust the main container to take up the full width */
+#mainContainer {
+    margin-left: 0 !important;
+}
+
+/* Center the remaining items in the toolbar */
+#toolbarViewerRight {
+    position: absolute;
+    right: 0;
+}
+
+#toolbarViewerMiddle {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#toolbarViewerLeft {
+   float: none;
+}

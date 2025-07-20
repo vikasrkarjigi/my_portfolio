@@ -10,7 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { useState } from "react";
 
 const resumePdfUrl = "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/Vikas_Ravikumar_Karjigi_Resume.pdf";
-const resumeUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(resumePdfUrl)}#toolbar=0`;
+const resumeUrl = `/pdfjs/web/viewer.html?file=${encodeURIComponent(resumePdfUrl)}`;
 
 
 export function Hero() {
