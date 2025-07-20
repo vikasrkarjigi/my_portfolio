@@ -7,6 +7,7 @@ import { Education } from "@/components/sections/education";
 import { Experience } from "@/components/sections/experience";
 import { Projects } from "@/components/sections/projects";
 import { TechStacks } from "@/components/sections/tech-stacks";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <Certifications />
         <Contact />
       </main>
+      <Footer />
     </div>
   );
 }
