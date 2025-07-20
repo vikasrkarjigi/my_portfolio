@@ -6,12 +6,6 @@ import { ArrowRight } from "lucide-react"
 import { AnimatedTextSwitcher } from "../animated-text-switcher"
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { useState } from "react";
-
-const resumePdfUrl = "https://raw.githubusercontent.com/vikasrkarjigi/karjigi_portfolio/main/Vikas_Ravikumar_Karjigi_Resume.pdf";
-const resumeUrl = `/pdfjs/web/viewer.html?file=${encodeURIComponent(resumePdfUrl)}`;
-
 
 export function Hero() {
   const roles = ["Data Scientist", "AI/ML Engineer", "Data Engineer", "Data Analyst"];
@@ -78,7 +72,7 @@ export function Hero() {
           className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl font-headline"
           variants={otherItemsVariants}
         >
-          <span className="block">Hi, I&apos;m</span>
+          <span className="block">Hi, I'apos;m</span>
           <motion.div
             className="animated-sparkle-text"
             aria-label={name}
@@ -105,22 +99,12 @@ export function Hero() {
           className="mt-10 flex items-center justify-center gap-x-6"
           variants={otherItemsVariants}
         >
-          <Dialog>
-            <DialogTrigger asChild>
-                <Button className="group transition-shadow duration-300 hover:shadow-glow-primary">
-                  View Resume
-                  <ArrowRight className="inline-block w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-            </DialogTrigger>
-            <DialogContent className="p-0 max-w-3xl h-[90vh] flex flex-col">
-                <DialogHeader className="p-4 pb-2">
-                    <DialogTitle>Vikas Ravikumar Karjigi Resume</DialogTitle>
-                </DialogHeader>
-                <div className="flex-1">
-                  <iframe src={resumeUrl} className="w-full h-full border-0" />
-                </div>
-            </DialogContent>
-          </Dialog>
+          <Link href="#projects">
+              <Button className="group transition-shadow duration-300 hover:shadow-glow-primary">
+                View My Work
+                <ArrowRight className="inline-block w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+          </Link>
 
           <Link href="#contact">
             <Button variant="ghost">
