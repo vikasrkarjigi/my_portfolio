@@ -109,7 +109,7 @@ export function Certifications() {
                         </div>
                          {cert.credentialURL && (
                             <a href={cert.credentialURL} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="ml-4 self-center">
-                                <Button variant="ghost" size="sm">
+                                <Button size="sm">
                                     View Credential
                                     <ExternalLink className="ml-2 h-4 w-4" />
                                 </Button>
